@@ -24,13 +24,15 @@ public class TP_ID {
 
         //procura_pais_por_continente("Ásia");
         //procura_continente_do_pais("Portugal"); //funciona
-        //procura_iso_do_pais("Portugal"); //funciona
+        procura_iso_do_pais("Moçambique"); //funciona
         //procura_pr_do_pais("Portugal"); //não funciona aqui. penso que é que por causa de estar a tentar fazer match de 3 linhas numa linha. acho que não fizemos nada parecido nas aulas
-        procura_link_bandeira_do_pais("Ruanda"); //nao funciona. não percebo porque, visto que é só uma linha
+        //procura_link_bandeira_do_pais("Portugal"); //nao funciona. não percebo porque, visto que é só uma linha      
+        //nao funciona porque no site a que estamos a ir existe mais do que uma ocurrencia para Portugal (por exemplo)
+        
         //procura_capital("Angola"); //funciona
         //cidade_mais_populosa("Portugal"); //não funciona pelo mesmo motivo
-        //procura_hino("França"); //funciona
-        //procura_moeda("Portugal"); //não funciona pelo mesmo motivo
+        //procura_hino("Alemanha"); //funciona
+        //procura_moeda("Portugal"); //não funciona pelo mesmo motivo        
         //procura_cod_telef("Portugal"); //não funciona pelo mesmo motivo
         //procura_cod_internet("Portugal"); //não funciona pelo mesmo motivo
 
