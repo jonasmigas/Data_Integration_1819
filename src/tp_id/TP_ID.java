@@ -41,8 +41,8 @@ public class TP_ID {
         //procura_cod_internet("China"); //funciona
         //procura_linguas_pais();// por fazer
         //adicionaPaisesFicheiro("França");
-        removePais("Portugal");
-
+        //removePais("Portugal");
+        adicionaInfoAmbosFicheiros("Portugal");
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
     }
@@ -376,7 +376,7 @@ public class TP_ID {
         //System.out.println(verif_rep);
         XdmValue res = XPathFunctions.executaXpath(verif_rep, "paises.xml");
         if (res != null && res.size() > 0) {
-            System.out.println("PAÍS JÁ EXISTE!");
+            System.out.println("PAÍS JÁ EXISTE NO FICHEIRO \"paises.xml\"!");
         } else {
             String continente = procura_continente_do_pais(paisInt);
             String presidente = procura_pr_do_pais(paisInt);
@@ -466,7 +466,7 @@ public class TP_ID {
         //System.out.println(verif_rep);
         XdmValue res = XPathFunctions.executaXpath(verif_rep, "factos.xml");
         if (res != null && res.size() > 0) {
-            System.out.println("PAÍS JÁ EXISTE!");
+            System.out.println("PAÍS JÁ EXISTE NO FICHEIRO \"factos.xml\"!");
         } else {
             String cod_telef = procura_cod_telef(paisInt);
             String cod_inter = procura_cod_internet(paisInt);
@@ -483,6 +483,14 @@ public class TP_ID {
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         }
     }
+    
+    public static void adicionaInfoAmbosFicheiros(String paisInt) throws IOException, FileNotFoundException, SaxonApiException{
+        
+        adicionaPaisesFicheiro(paisInt);
+        adicionaFactosFicheiro(paisInt);
+        
+    }
+    
 
     public static Document removePais(String procura) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");

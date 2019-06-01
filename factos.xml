@@ -18,4 +18,15 @@
           <presidente>Paul Kagame</presidente>
           <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_Rwanda.svg/125px-Flag_of_Rwanda.svg.png</link_flag>
      </pais>
+     <pais iso="PRT">
+          <nome>Portugal</nome>
+          <cod_telef>+351</cod_telef>
+          <cod_inter>.pt</cod_inter>
+          <capital>Lisboa</capital>
+          <cid_mais_pop>Lisboa</cid_mais_pop>
+          <hino>A Portuguesa</hino>
+          <moeda>Euro</moeda>
+          <populacao>teste</populacao>
+          <area>teste</area>
+     </pais>
 </paises>
