@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paises>
-     <pais iso="FRA">
-          <nome>França</nome>
-          <continente>Europa</continente>
-          <presidente>Emmanuel Macron</presidente>
-          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/125px-Flag_of_France.svg.png</link_flag>
-     </pais>
      <pais iso="BRA">
           <nome>Brasil</nome>
-          <continente>América</continente>
-          <presidente>Jair Bolsonaro</presidente>
-          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png</link_flag>
+          <cod_telef>+55</cod_telef>
+          <cod_inter>.br</cod_inter>
+          <capital>Brasília</capital>
+          <cid_mais_pop />
+          <hino>Hino Nacional Brasileiro</hino>
+          <moeda>Real</moeda>
+          <populacao>teste</populacao>
+          <area>teste</area>
      </pais>
-     <pais iso="RWA">
-          <nome>Ruanda</nome>
-          <continente>África</continente>
-          <presidente>Paul Kagame</presidente>
-          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_Rwanda.svg/125px-Flag_of_Rwanda.svg.png</link_flag>
-     </pais>
-     <pais iso="PRT">
-          <nome>Portugal</nome>
-          <cod_telef>+351</cod_telef>
-          <cod_inter>.pt</cod_inter>
-          <capital>Lisboa</capital>
-          <cid_mais_pop>Lisboa</cid_mais_pop>
-          <hino>A Portuguesa</hino>
-          <moeda>Euro</moeda>
+     <pais iso="AGO">
+          <nome>Angola</nome>
+          <cod_telef>+244</cod_telef>
+          <cod_inter>.ao</cod_inter>
+          <capital>Luanda</capital>
+          <cid_mais_pop />
+          <hino>Angola Avante!</hino>
+          <moeda>Kwanza</moeda>
           <populacao>teste</populacao>
           <area>teste</area>
      </pais>

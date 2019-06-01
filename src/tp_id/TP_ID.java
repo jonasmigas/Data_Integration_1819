@@ -42,7 +42,7 @@ public class TP_ID {
         //procura_linguas_pais();// por fazer
         //adicionaPaisesFicheiro("França");
         //removePais("Portugal");
-        adicionaInfoAmbosFicheiros("Portugal");
+        adicionaInfoAmbosFicheiros("Brasil");
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
     }
