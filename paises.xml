@@ -18,4 +18,10 @@
           <presidente>Paul Kagame</presidente>
           <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_Rwanda.svg/125px-Flag_of_Rwanda.svg.png</link_flag>
      </pais>
+     <pais iso="PRT">
+          <nome>Portugal</nome>
+          <continente>Europa</continente>
+          <presidente>Marcelo Rebelo de Sousa</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png</link_flag>
+     </pais>
 </paises>
