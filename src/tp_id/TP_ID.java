@@ -43,6 +43,9 @@ public class TP_ID {
         //adicionaPaisesFicheiro("França");
         //removePais("Portugal");
 
+        adicionaInfoAmbosFicheiros("Brasil");
+
+
         adicionaInfoAmbosFicheiros("Portugal");
 
         //adicionaPaisesFicheiro("Ruanda");
