@@ -44,19 +44,22 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
+
         //procura_lingua_oficial("Portugal");// por fazer
         
 
         adicionaPaisesFicheiro("Portugal");
         testar();
         
+
+        //procura_lingua_oficial("Portugal");// funciona
+        //procura_populacao("Portugal");//funciona milhoes
+        procura_area("Portugal");//funciona km2
+
+        //adicionaPaisesFicheiro("França");
         //removePaisFicheiros("Brasil");
-
         //adicionaInfoAmbosFicheiros("Espanha");
-
-
         //adicionaInfoAmbosFicheiros("Portugal");
-
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
         //alteraPresidente("França", "Chirac");
@@ -338,15 +341,13 @@ public class TP_ID {
         ler.close();
         return moeda;
     }
-    
-    
-    
-        //procurar linguas oficiais de um país fonte s1
-        static ArrayList procura_lingua_oficial(String procura) throws FileNotFoundException, IOException {
+
+    //procurar linguas oficiais de um país fonte s1
+    static ArrayList procura_lingua_oficial(String procura) throws FileNotFoundException, IOException {
         String link = "https://pt.wikipedia.org/wiki/Lista_de_Estados_soberanos";
         ArrayList<String> lingua = new ArrayList();
         HttpRequestFunctions.httpRequest1(link, "", "linguas.html");
-        String er = "<img alt=\""+procura+"\"";
+        String er = "<img alt=\"" + procura + "\"";
         //String er = "<span id=\"" + procura + "\">";
         //String er = "<td valign=\"[^>]+><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span id=\"" + procura + "\">";
         String er2 = "title=\"Língua [^\"]+\">([^<]+)</a>";
@@ -380,7 +381,50 @@ public class TP_ID {
         ler.close();
         return lingua;
     }
+    //procurar populacao total de um pais fonte s2 (ano 2019)
 
+    static String procura_populacao(String procura) throws FileNotFoundException, IOException {
+        String link = "https://www.sport-histoire.fr/pt/Geografia/Paises_por_populacao.php";
+        String populacao = null;
+        HttpRequestFunctions.httpRequest1(link, "", "populacao.html");
+        String er = "<a href=\"[^>]+>" + procura + "</a></td><td>[^<]+</td><td [^>]+>([^<]+)</td";
+        Pattern p = Pattern.compile(er);
+        Scanner ler = new Scanner(new FileInputStream("populacao.html"));
+        Matcher m;
+        String linha;
+        while (ler.hasNextLine()) {
+            linha = ler.nextLine();
+            m = p.matcher(linha);
+            if (m.find()) {
+                System.out.println(m.group(1));
+                populacao = m.group(1);
+            }
+        }
+        ler.close();
+        return populacao;
+    }
+    //procurar area total de um pais fonte s2
+    static String procura_area(String procura) throws FileNotFoundException, IOException {
+        String link = "https://www.sport-histoire.fr/pt/Geografia/Paises_por_area.php";
+        String area = null;
+        HttpRequestFunctions.httpRequest1(link, "", "area.html");
+        String er = "<a href=\"[^>]+>" + procura + "</a></td><td>[^<]+</td><td [^>]+>([^<]+)</td";
+        Pattern p = Pattern.compile(er);
+        Scanner ler = new Scanner(new FileInputStream("area.html"));
+        Matcher m;
+        String linha;
+        while (ler.hasNextLine()) {
+            linha = ler.nextLine();
+            m = p.matcher(linha);
+            if (m.find()) {
+                System.out.println(m.group(1));
+                area = m.group(1);
+            }
+        }
+        ler.close();
+        return area;
+
+    }
 
     public static Document adicionaPais(Paises p, Document doc) {
 
@@ -542,16 +586,14 @@ public class TP_ID {
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         }
     }
-    
-    public static void adicionaInfoAmbosFicheiros(String paisInt) throws IOException, FileNotFoundException, SaxonApiException{
-        
+
+    public static void adicionaInfoAmbosFicheiros(String paisInt) throws IOException, FileNotFoundException, SaxonApiException {
+
         adicionaPaisesFicheiro(paisInt);
         adicionaFactosFicheiro(paisInt);
-        
-    }
-    
 
-    
+    }
+
     //remover um pais dos ficheiro paises.xml e factos.xml
     public static Document removePaisFicheiros(String procura) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
@@ -562,9 +604,9 @@ public class TP_ID {
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
-            Element pais = (Element)todosPaises.get(i); //obtem pais i da Lista
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
-                iso = pais.getAttributeValue("iso");   
+                iso = pais.getAttributeValue("iso");
                 pais.getParent().removeContent(pais);
                 System.out.println("Pais removido com sucesso do ficheiro livros.xml!");
                 found = true;
@@ -573,8 +615,7 @@ public class TP_ID {
         if (!found) {
             System.out.println("Pais " + procura + " não foi encontrado");
         }
-        
-        
+
         Document doc2 = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         Element raiz2;
         raiz2 = doc2.getRootElement();
@@ -582,7 +623,7 @@ public class TP_ID {
         boolean found2 = false;
 
         for (int i = 0; i < factos.size(); i++) {
-            Element pais = (Element)factos.get(i); //obtem pais i da Lista
+            Element pais = (Element) factos.get(i); //obtem pais i da Lista
             if (pais.getAttributeValue("iso").equals(iso)) {
                 pais.getParent().removeContent(pais);
                 System.out.println("Pais removido com sucesso do ficheiro factos.xml!");
@@ -594,13 +635,10 @@ public class TP_ID {
         }
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc2, "factos.xml");
-        
+
         return doc;
     }
 
-   
-    
-    
     //funcao para alterar o presidente do pais inserido no parametro
     public static Document alteraPresidente(String procura, String novoPresidente) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
@@ -612,7 +650,7 @@ public class TP_ID {
         for (int i = 0; i < todosPaises.size(); i++) {
             Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
-                System.out.println(pais.getChild("nome").getText() + " Presidente: " +pais.getChild("presidente").getText());
+                System.out.println(pais.getChild("nome").getText() + " Presidente: " + pais.getChild("presidente").getText());
                 pais.getChild("presidente").setText(novoPresidente);
                 System.out.println("Novo presidente: " + pais.getChild("presidente").getText());
                 found = true;
@@ -622,12 +660,11 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
         return doc;
     }
-    
-    
+
     //funcao para alterar a alteracao do pais inserida no parametro
     public static Document alteraPopulacao(String procura, String novaPopulacao) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
@@ -639,7 +676,7 @@ public class TP_ID {
         for (int i = 0; i < todosPaises.size(); i++) {
             Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
-                System.out.println(pais.getChild("nome").getText() + " Populacao: " +pais.getChild("populacao").getText());
+                System.out.println(pais.getChild("nome").getText() + " Populacao: " + pais.getChild("populacao").getText());
                 pais.getChild("populacao").setText(novaPopulacao);
                 System.out.println("Nova populacao: " + pais.getChild("populacao").getText());
                 found = true;
@@ -649,7 +686,7 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
