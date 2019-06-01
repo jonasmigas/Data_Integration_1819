@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises />
+<paises>
+     <pais iso="ESP">
+          <nome>Espanha</nome>
+          <cod_telef>+34</cod_telef>
+          <cod_inter>.es</cod_inter>
+          <capital>Madrid</capital>
+          <cid_mais_pop>Madrid</cid_mais_pop>
+          <hino>Marcha Real</hino>
+          <moeda>Euro</moeda>
+          <populacao>teste</populacao>
+          <area>teste</area>
+     </pais>
+</paises>
