@@ -5,14 +5,19 @@
  */
 package tp_id;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmValue;
 import org.jdom2.Attribute;
@@ -39,11 +44,11 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-        procura_lingua_oficial("Portugal");// por fazer
+        //procura_lingua_oficial("Portugal");// por fazer
         
 
-        //adicionaPaisesFicheiro("França");
-        
+        adicionaPaisesFicheiro("Portugal");
+        testar();
         
         //removePaisFicheiros("Brasil");
 
@@ -647,6 +652,23 @@ public class TP_ID {
         
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
+    }
+    
+    public static void testar(){
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        if (doc != null) {
+            Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "paises.xml", "transf_html.xsl");
+             XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "teste.html");
+             doc = XMLJDomFunctions.lerDocumentoXML("teste.html");
+             String t = XMLJDomFunctions.escreverDocumentoString(doc);
+             String url = "teste.html";
+             File htmlFile = new File(url);
+                try {
+                    Desktop.getDesktop().browse(htmlFile.toURI());
+                } catch (IOException ex) {
+                    Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
     }
 
 }
