@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paises>
+     <pais iso="FRA">
+          <nome>França</nome>
+          <cod_telef>+33</cod_telef>
+          <cod_inter>.fr</cod_inter>
+          <capital>Paris</capital>
+          <cid_mais_pop />
+          <hino>La Marseillaise</hino>
+          <moeda>Euro</moeda>
+          <populacao>teste</populacao>
+          <area>teste</area>
+     </pais>
+</paises>

@@ -40,8 +40,13 @@ public class TP_ID {
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
         //procura_linguas_pais();// por fazer
+
         //adicionaPaisesFicheiro("França");
         removePais("Portugal");
+
+
+        adicionaPaisesFicheiro("Ruanda");
+        //adicionaFactosFicheiro("França");
 
     }
 
@@ -384,6 +389,103 @@ public class TP_ID {
             doc = adicionaPais(p, doc);
 
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
+        }
+    }
+    
+    
+    public static Document adicionaFactos(Factos f, Document doc) {
+
+        Element raiz;
+        if (doc == null) {
+            raiz = new Element("factos"); //cria <paises>...</paises>
+            doc = new Document(raiz);
+        } else {
+            raiz = doc.getRootElement();
+        }
+
+        Element pais = new Element("pais");
+
+        Attribute iso = new Attribute("iso", f.getIso());
+        pais.setAttribute(iso);
+
+        Element nome = new Element("nome");
+        nome.addContent(f.getNome());
+
+        Element cod_telef = new Element("cod_telef");
+        cod_telef.addContent(f.getCod_telef());
+        
+        Element cod_inter = new Element("cod_inter");
+        cod_inter.addContent(f.getCod_inter());
+        
+        Element capital = new Element("capital");
+        capital.addContent(f.getCapital());
+        
+        Element cid_mais_pop = new Element("cid_mais_pop");
+        cid_mais_pop.addContent(f.getCid_mais_pop());
+        
+        Element hino = new Element("hino");
+        hino.addContent(f.getHino());
+        
+        Element moeda = new Element("moeda");
+        moeda.addContent(f.getMoeda());
+        
+        Element populacao = new Element("populacao");
+        populacao.addContent(f.getPopulacao());
+        
+        Element area = new Element("area");
+        area.addContent(f.getArea());
+        
+        //Element lista_idiomas = new Element("lista_idiomas");
+        //lista_idiomas.addContent(f.getLista_idiomas())
+
+        pais.addContent(nome);
+        pais.addContent(cod_telef);
+        pais.addContent(cod_inter);
+        pais.addContent(capital);
+        pais.addContent(cid_mais_pop);
+        pais.addContent(hino);
+        pais.addContent(moeda);
+        pais.addContent(populacao);
+        pais.addContent(area);
+        //pais.addContent(lista_idiomas);
+        raiz.addContent(pais);
+
+        return doc;
+
+    }
+    
+    public static void adicionaFactosFicheiro(String paisInt) throws FileNotFoundException, IOException, SaxonApiException {
+
+        Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        Element raiz;
+        if (doc == null) {
+            raiz = new Element("paises"); //cria <paises>...</paises>
+            doc = new Document(raiz);
+        } else {
+            raiz = doc.getRootElement();
+        }
+
+        String iso = procura_iso_do_pais(paisInt);
+
+        String verif_rep = "//pais[@iso='" + iso + "']";
+        //System.out.println(verif_rep);
+        XdmValue res = XPathFunctions.executaXpath(verif_rep, "factos.xml");
+        if (res != null && res.size() > 0) {
+            System.out.println("PAÍS JÁ EXISTE!");
+        } else {
+            String cod_telef = procura_cod_telef(paisInt);
+            String cod_inter = procura_cod_internet(paisInt);
+            String capital = procura_capital(paisInt);
+            String cid_mais_pop = cidade_mais_populosa(paisInt);;
+            String hino = procura_hino(paisInt);
+            String moeda = procura_moeda(paisInt);
+            String populacao ="teste";
+            String area ="teste";
+
+            Factos f = new Factos(iso, paisInt, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, "testar idioma");
+            doc = adicionaFactos(f, doc);
+
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         }
     }
 
