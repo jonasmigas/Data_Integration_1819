@@ -42,9 +42,15 @@ public class TP_ID {
         //procura_linguas_pais();// por fazer
         //adicionaPaisesFicheiro("França");
         //removePais("Portugal");
+
         adicionaInfoAmbosFicheiros("Brasil");
+
+
+        adicionaInfoAmbosFicheiros("Portugal");
+
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
+        alteraPresidente("França", "Chirac");
     }
 
     //procurar paises por continente fonte s2
@@ -516,7 +522,7 @@ public class TP_ID {
 
     
     
-    public static Document alteraDados(String procura) {
+    public static Document alteraPresidente(String procura, String novoPresidente) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
         raiz = doc.getRootElement();
@@ -526,15 +532,18 @@ public class TP_ID {
         for (int i = 0; i < todosPaises.size(); i++) {
             Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
-                pais.getParent().removeContent(pais);
-                System.out.println("Pais removido com sucesso!");
+                System.out.println(pais.getChild("nome").getText() + " Presidente: " +pais.getChild("presidente").getText());
+                pais.getChild("presidente").setText(novoPresidente);
+                System.out.println("Novo presidente: " + pais.getChild("presidente").getText());
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("Cod iso " + procura + " não foi encontrado");
+            System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
+        
+        XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
         return doc;
     }
 
