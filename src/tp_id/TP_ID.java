@@ -39,7 +39,7 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-        procura_lingua_oficial("China");// por fazer
+        procura_lingua_oficial("Portugal");// por fazer
         
 
         //adicionaPaisesFicheiro("França");
@@ -337,9 +337,9 @@ public class TP_ID {
     
     
         //procurar linguas oficiais de um país fonte s1
-        static String procura_lingua_oficial(String procura) throws FileNotFoundException, IOException {
+        static ArrayList procura_lingua_oficial(String procura) throws FileNotFoundException, IOException {
         String link = "https://pt.wikipedia.org/wiki/Lista_de_Estados_soberanos";
-        String lingua = null;
+        ArrayList<String> lingua = new ArrayList();
         HttpRequestFunctions.httpRequest1(link, "", "linguas.html");
         String er = "<img alt=\""+procura+"\"";
         //String er = "<span id=\"" + procura + "\">";
@@ -367,7 +367,7 @@ public class TP_ID {
                     }
                     if (m.find()) {
                         System.out.println(m.group(1));
-                        lingua = m.group(1);
+                        lingua.add(m.group(1));
                     }
                 }
             }
