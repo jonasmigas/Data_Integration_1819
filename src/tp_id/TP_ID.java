@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +40,9 @@ public class TP_ID {
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
         //procura_linguas_pais();// por fazer
-        adicionaPaisesFicheiro("França");
+        //adicionaPaisesFicheiro("França");
+        removePais("Portugal");
+
     }
 
     //procurar paises por continente fonte s2
@@ -356,7 +359,6 @@ public class TP_ID {
     }
 
     public static void adicionaPaisesFicheiro(String paisInt) throws FileNotFoundException, IOException, SaxonApiException {
-
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
         if (doc == null) {
@@ -383,6 +385,28 @@ public class TP_ID {
 
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
         }
+    }
+
+    public static Document removePais(String procura) {
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        Element raiz;
+        raiz = doc.getRootElement();
+        List todosPaises = raiz.getChildren("pais");
+        boolean found = false;
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element)todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getChild("nome").getText().contains(procura)) {
+                pais.removeContent(i);
+                System.out.println("Pais removido com sucesso!");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Pais " + procura + " não foi encontrado");
+            return null;
+        }
+        return doc;
     }
 
 }
