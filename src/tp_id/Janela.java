@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 import net.sf.saxon.s9api.SaxonApiException;
 import org.jdom2.Document;
 import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
-import static tp_id.TP_ID.removePais;
+import static tp_id.TP_ID.alteraPresidente;
+import static tp_id.TP_ID.removePaisFicheiros;
 
 /**
  *
@@ -44,6 +45,12 @@ public class Janela extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         CampoTextPaisParaRemover = new javax.swing.JTextField();
         BotaoRemoverPais = new javax.swing.JButton();
+        JanelaEditaPresi = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        CampoTextPaisParaEditarPres = new javax.swing.JTextField();
+        BotaoEditaPresi = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        CampoTextPresidente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
@@ -135,6 +142,59 @@ public class Janela extends javax.swing.JFrame {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
+        jLabel3.setText("Nome do País:");
+
+        BotaoEditaPresi.setText("Alterar Informação");
+        BotaoEditaPresi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoEditaPresiActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nome do Presidente:");
+
+        CampoTextPresidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextPresidenteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JanelaEditaPresiLayout = new javax.swing.GroupLayout(JanelaEditaPresi.getContentPane());
+        JanelaEditaPresi.getContentPane().setLayout(JanelaEditaPresiLayout);
+        JanelaEditaPresiLayout.setHorizontalGroup(
+            JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaEditaPresiLayout.createSequentialGroup()
+                .addGroup(JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaEditaPresiLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoEditaPresi))
+                    .addGroup(JanelaEditaPresiLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(7, 7, 7)
+                        .addGroup(JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CampoTextPaisParaEditarPres)
+                            .addComponent(CampoTextPresidente, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
+                .addGap(31, 31, 31))
+        );
+        JanelaEditaPresiLayout.setVerticalGroup(
+            JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaEditaPresiLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(CampoTextPaisParaEditarPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(JanelaEditaPresiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(CampoTextPresidente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BotaoEditaPresi)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
@@ -204,6 +264,11 @@ public class Janela extends javax.swing.JFrame {
         MenuEditar.setText("Editar");
 
         EditarPresPais.setText("Editar Presidente de um País");
+        EditarPresPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarPresPaisActionPerformed(evt);
+            }
+        });
         MenuEditar.add(EditarPresPais);
 
         MenuBar.add(MenuEditar);
@@ -310,7 +375,7 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pesquisa = CampoTextPaisParaRemover.getText();
         
-        removePais(pesquisa);
+        removePaisFicheiros(pesquisa);
     }//GEN-LAST:event_BotaoRemoverPaisActionPerformed
 
     private void RemoverPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverPaisActionPerformed
@@ -319,6 +384,26 @@ public class Janela extends javax.swing.JFrame {
         JanelaRemovePais.setTitle("Remover um País");
         JanelaRemovePais.setVisible(true);
     }//GEN-LAST:event_RemoverPaisActionPerformed
+
+    private void BotaoEditaPresiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditaPresiActionPerformed
+        // TODO add your handling code here:
+        String pesquisa = CampoTextPaisParaEditarPres.getText();
+        String novo_pres = CampoTextPresidente.getText();
+        
+        alteraPresidente(pesquisa, novo_pres);
+    }//GEN-LAST:event_BotaoEditaPresiActionPerformed
+
+    private void CampoTextPresidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextPresidenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextPresidenteActionPerformed
+
+    private void EditarPresPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPresPaisActionPerformed
+        // TODO add your handling code here:
+        JanelaEditaPresi.setSize(400, 250);
+        JanelaEditaPresi.setLocation(300, 300);
+        JanelaEditaPresi.setTitle("Editar Presidente de um País");
+        JanelaEditaPresi.setVisible(true);
+    }//GEN-LAST:event_EditarPresPaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,11 +445,15 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem ApagarFactosXML;
     private javax.swing.JMenuItem ApagarPaisesXML;
     private javax.swing.JButton BotaoAdicionarPais;
+    private javax.swing.JButton BotaoEditaPresi;
     private javax.swing.JButton BotaoRemoverPais;
     private javax.swing.JTextField CampoTextPaisParaAdicionar;
+    private javax.swing.JTextField CampoTextPaisParaEditarPres;
     private javax.swing.JTextField CampoTextPaisParaRemover;
+    private javax.swing.JTextField CampoTextPresidente;
     private javax.swing.JMenuItem EditarPresPais;
     private javax.swing.JDialog JanelaAdicionaPais;
+    private javax.swing.JDialog JanelaEditaPresi;
     private javax.swing.JDialog JanelaRemovePais;
     private javax.swing.JMenu MenuAdicionar;
     private javax.swing.JMenuBar MenuBar;
@@ -378,6 +467,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem VerPaisesXML;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
