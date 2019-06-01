@@ -40,14 +40,11 @@ public class TP_ID {
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
         //procura_linguas_pais();// por fazer
-
         //adicionaPaisesFicheiro("França");
         removePais("Portugal");
 
-
-        adicionaPaisesFicheiro("Ruanda");
+        //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
-
     }
 
     //procurar paises por continente fonte s2
@@ -391,8 +388,7 @@ public class TP_ID {
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
         }
     }
-    
-    
+
     public static Document adicionaFactos(Factos f, Document doc) {
 
         Element raiz;
@@ -413,31 +409,30 @@ public class TP_ID {
 
         Element cod_telef = new Element("cod_telef");
         cod_telef.addContent(f.getCod_telef());
-        
+
         Element cod_inter = new Element("cod_inter");
         cod_inter.addContent(f.getCod_inter());
-        
+
         Element capital = new Element("capital");
         capital.addContent(f.getCapital());
-        
+
         Element cid_mais_pop = new Element("cid_mais_pop");
         cid_mais_pop.addContent(f.getCid_mais_pop());
-        
+
         Element hino = new Element("hino");
         hino.addContent(f.getHino());
-        
+
         Element moeda = new Element("moeda");
         moeda.addContent(f.getMoeda());
-        
+
         Element populacao = new Element("populacao");
         populacao.addContent(f.getPopulacao());
-        
+
         Element area = new Element("area");
         area.addContent(f.getArea());
-        
+
         //Element lista_idiomas = new Element("lista_idiomas");
         //lista_idiomas.addContent(f.getLista_idiomas())
-
         pais.addContent(nome);
         pais.addContent(cod_telef);
         pais.addContent(cod_inter);
@@ -453,7 +448,7 @@ public class TP_ID {
         return doc;
 
     }
-    
+
     public static void adicionaFactosFicheiro(String paisInt) throws FileNotFoundException, IOException, SaxonApiException {
 
         Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
@@ -479,8 +474,8 @@ public class TP_ID {
             String cid_mais_pop = cidade_mais_populosa(paisInt);;
             String hino = procura_hino(paisInt);
             String moeda = procura_moeda(paisInt);
-            String populacao ="teste";
-            String area ="teste";
+            String populacao = "teste";
+            String area = "teste";
 
             Factos f = new Factos(iso, paisInt, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, "testar idioma");
             doc = adicionaFactos(f, doc);
@@ -497,15 +492,39 @@ public class TP_ID {
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
-            Element pais = (Element)todosPaises.get(i); //obtem pais i da Lista
-            if (pais.getChild("nome").getText().contains(procura)) {
-                pais.removeContent(i);
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getChild("nome").getText().equals(procura)) {
+                pais.getParent().removeContent(pais);
                 System.out.println("Pais removido com sucesso!");
                 found = true;
             }
         }
         if (!found) {
             System.out.println("Pais " + procura + " não foi encontrado");
+        }
+        XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
+        return doc;
+    }
+
+    
+    
+    public static Document alteraDados(String procura) {
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        Element raiz;
+        raiz = doc.getRootElement();
+        List todosPaises = raiz.getChildren("pais");
+        boolean found = false;
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getChild("nome").getText().equals(procura)) {
+                pais.getParent().removeContent(pais);
+                System.out.println("Pais removido com sucesso!");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Cod iso " + procura + " não foi encontrado");
             return null;
         }
         return doc;
