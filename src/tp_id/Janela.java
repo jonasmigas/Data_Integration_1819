@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import net.sf.saxon.s9api.SaxonApiException;
 import org.jdom2.Document;
 import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
+import static tp_id.TP_ID.removePais;
 
 /**
  *
@@ -35,10 +36,14 @@ public class Janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        JanelaAdicionaPais = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         CampoTextPaisParaAdicionar = new javax.swing.JTextField();
         BotaoAdicionarPais = new javax.swing.JButton();
+        JanelaRemovePais = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        CampoTextPaisParaRemover = new javax.swing.JTextField();
+        BotaoRemoverPais = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
@@ -51,6 +56,10 @@ public class Janela extends javax.swing.JFrame {
         ApagarFactosXML = new javax.swing.JMenuItem();
         MenuAdicionar = new javax.swing.JMenu();
         AdicionarPais = new javax.swing.JMenuItem();
+        MenuEditar = new javax.swing.JMenu();
+        EditarPresPais = new javax.swing.JMenuItem();
+        MenuRemover = new javax.swing.JMenu();
+        RemoverPais = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nome do País:");
 
@@ -61,31 +70,68 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
+        javax.swing.GroupLayout JanelaAdicionaPaisLayout = new javax.swing.GroupLayout(JanelaAdicionaPais.getContentPane());
+        JanelaAdicionaPais.getContentPane().setLayout(JanelaAdicionaPaisLayout);
+        JanelaAdicionaPaisLayout.setHorizontalGroup(
+            JanelaAdicionaPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaAdicionaPaisLayout.createSequentialGroup()
+                .addGroup(JanelaAdicionaPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaAdicionaPaisLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel1)
-                        .addGap(58, 58, 58)
+                        .addGap(36, 36, 36)
                         .addComponent(CampoTextPaisParaAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                    .addGroup(JanelaAdicionaPaisLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotaoAdicionarPais)))
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        JanelaAdicionaPaisLayout.setVerticalGroup(
+            JanelaAdicionaPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaAdicionaPaisLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JanelaAdicionaPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(CampoTextPaisParaAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotaoAdicionarPais)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        jLabel2.setText("Nome do País:");
+
+        BotaoRemoverPais.setText("Remover");
+        BotaoRemoverPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoRemoverPaisActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JanelaRemovePaisLayout = new javax.swing.GroupLayout(JanelaRemovePais.getContentPane());
+        JanelaRemovePais.getContentPane().setLayout(JanelaRemovePaisLayout);
+        JanelaRemovePaisLayout.setHorizontalGroup(
+            JanelaRemovePaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaRemovePaisLayout.createSequentialGroup()
+                .addGroup(JanelaRemovePaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaRemovePaisLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoRemoverPais))
+                    .addGroup(JanelaRemovePaisLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37)
+                        .addComponent(CampoTextPaisParaRemover, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                .addGap(31, 31, 31))
+        );
+        JanelaRemovePaisLayout.setVerticalGroup(
+            JanelaRemovePaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaRemovePaisLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(JanelaRemovePaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(CampoTextPaisParaRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotaoRemoverPais)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
@@ -145,7 +191,7 @@ public class Janela extends javax.swing.JFrame {
 
         MenuAdicionar.setText("Adicionar");
 
-        AdicionarPais.setText("Adicionar info de um país");
+        AdicionarPais.setText("Adicionar info de um País");
         AdicionarPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdicionarPaisActionPerformed(evt);
@@ -155,6 +201,25 @@ public class Janela extends javax.swing.JFrame {
 
         MenuBar.add(MenuAdicionar);
 
+        MenuEditar.setText("Editar");
+
+        EditarPresPais.setText("Editar Presidente de um País");
+        MenuEditar.add(EditarPresPais);
+
+        MenuBar.add(MenuEditar);
+
+        MenuRemover.setText("Remover");
+
+        RemoverPais.setText("Remover info de um País");
+        RemoverPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoverPaisActionPerformed(evt);
+            }
+        });
+        MenuRemover.add(RemoverPais);
+
+        MenuBar.add(MenuRemover);
+
         setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,14 +228,14 @@ public class Janela extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -221,12 +286,13 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_ApagarFactosXMLActionPerformed
 
     private void AdicionarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarPaisActionPerformed
-        jDialog1.setSize(400, 200);
-        jDialog1.setLocation(300, 300);
-        jDialog1.setTitle("Pesquisar por Autor");
-        jDialog1.setVisible(true);
+        JanelaAdicionaPais.setSize(400, 200);
+        JanelaAdicionaPais.setLocation(300, 300);
+        JanelaAdicionaPais.setTitle("Adicionar um País");
+        JanelaAdicionaPais.setVisible(true);
     }//GEN-LAST:event_AdicionarPaisActionPerformed
 
+    
     private void BotaoAdicionarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarPaisActionPerformed
         // TODO add your handling code here:
         String pesquisa = CampoTextPaisParaAdicionar.getText();
@@ -239,6 +305,20 @@ public class Janela extends javax.swing.JFrame {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotaoAdicionarPaisActionPerformed
+
+    private void BotaoRemoverPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRemoverPaisActionPerformed
+        // TODO add your handling code here:
+        String pesquisa = CampoTextPaisParaRemover.getText();
+        
+        removePais(pesquisa);
+    }//GEN-LAST:event_BotaoRemoverPaisActionPerformed
+
+    private void RemoverPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverPaisActionPerformed
+        JanelaRemovePais.setSize(400, 200);
+        JanelaRemovePais.setLocation(300, 300);
+        JanelaRemovePais.setTitle("Remover um País");
+        JanelaRemovePais.setVisible(true);
+    }//GEN-LAST:event_RemoverPaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,16 +360,24 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem ApagarFactosXML;
     private javax.swing.JMenuItem ApagarPaisesXML;
     private javax.swing.JButton BotaoAdicionarPais;
+    private javax.swing.JButton BotaoRemoverPais;
     private javax.swing.JTextField CampoTextPaisParaAdicionar;
+    private javax.swing.JTextField CampoTextPaisParaRemover;
+    private javax.swing.JMenuItem EditarPresPais;
+    private javax.swing.JDialog JanelaAdicionaPais;
+    private javax.swing.JDialog JanelaRemovePais;
     private javax.swing.JMenu MenuAdicionar;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenu MenuEditar;
     private javax.swing.JMenu MenuPrincipal;
+    private javax.swing.JMenu MenuRemover;
     private javax.swing.JMenu MenuXML;
+    private javax.swing.JMenuItem RemoverPais;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuItem VerFactosXML;
     private javax.swing.JMenuItem VerPaisesXML;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
