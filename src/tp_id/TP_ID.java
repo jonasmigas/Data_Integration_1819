@@ -47,7 +47,8 @@ public class TP_ID {
 
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
-        alteraPresidente("França", "Chirac");
+        //alteraPresidente("França", "Chirac");
+        alteraPopulacao("França", "23");
     }
 
     //procurar paises por continente fonte s2
@@ -494,7 +495,7 @@ public class TP_ID {
         
     }
     
-
+    //remover 
     public static Document removePais(String procura) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
@@ -518,7 +519,7 @@ public class TP_ID {
     }
 
     
-    
+    //funcao para alterar o presidente do pais inserido no parametro
     public static Document alteraPresidente(String procura, String novoPresidente) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
@@ -541,6 +542,33 @@ public class TP_ID {
         }
         
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
+        return doc;
+    }
+    
+    
+    //funcao para alterar o presidente do pais inserido no parametro
+    public static Document alteraPopulacao(String procura, String novaPopulacao) {
+        Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        Element raiz;
+        raiz = doc.getRootElement();
+        List todosPaises = raiz.getChildren("pais");
+        boolean found = false;
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getChild("nome").getText().equals(procura)) {
+                System.out.println(pais.getChild("nome").getText() + " Populacao: " +pais.getChild("populacao").getText());
+                pais.getChild("populacao").setText(novaPopulacao);
+                System.out.println("Nova populacao: " + pais.getChild("populacao").getText());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Pais " + procura + " não foi encontrado");
+            return null;
+        }
+        
+        XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
 
