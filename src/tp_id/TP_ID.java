@@ -39,13 +39,13 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-        //procura_linguas_pais();// por fazer
+        procura_lingua_oficial("China");// por fazer
         
 
         //adicionaPaisesFicheiro("França");
         
         
-        removePaisFicheiros("Brasil");
+        //removePaisFicheiros("Brasil");
 
         //adicionaInfoAmbosFicheiros("Espanha");
 
@@ -333,6 +333,49 @@ public class TP_ID {
         ler.close();
         return moeda;
     }
+    
+    
+    
+        //procurar linguas oficiais de um país fonte s1
+        static String procura_lingua_oficial(String procura) throws FileNotFoundException, IOException {
+        String link = "https://pt.wikipedia.org/wiki/Lista_de_Estados_soberanos";
+        String lingua = null;
+        HttpRequestFunctions.httpRequest1(link, "", "linguas.html");
+        String er = "<img alt=\""+procura+"\"";
+        //String er = "<span id=\"" + procura + "\">";
+        //String er = "<td valign=\"[^>]+><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span id=\"" + procura + "\">";
+        String er2 = "title=\"Língua [^\"]+\">([^<]+)</a>";
+        String er3 = "</td>";
+        Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
+        Pattern p3 = Pattern.compile(er3);
+        Scanner ler = new Scanner(new FileInputStream("linguas.html"));
+        Matcher m;
+        Matcher m1;
+        String linha;
+        while (ler.hasNextLine()) {
+            linha = ler.nextLine();
+            m = p.matcher(linha);
+            if (m.find()) {
+                while (ler.hasNextLine()) {
+                    linha = ler.nextLine();
+                    m = p2.matcher(linha);
+                    m1 = p3.matcher(linha);
+                    if (m1.find()) {
+                        ler.close();
+                        return lingua;
+                    }
+                    if (m.find()) {
+                        System.out.println(m.group(1));
+                        lingua = m.group(1);
+                    }
+                }
+            }
+        }
+        ler.close();
+        return lingua;
+    }
+
 
     public static Document adicionaPais(Paises p, Document doc) {
 
