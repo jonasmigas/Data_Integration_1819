@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import net.sf.saxon.s9api.SaxonApiException;
 import org.jdom2.Document;
 import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
-import static tp_id.TP_ID.removePais;
+import static tp_id.TP_ID.removePaisFicheiros;
 
 /**
  *
@@ -310,7 +310,7 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String pesquisa = CampoTextPaisParaRemover.getText();
         
-        removePais(pesquisa);
+        removePaisFicheiros(pesquisa);
     }//GEN-LAST:event_BotaoRemoverPaisActionPerformed
 
     private void RemoverPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverPaisActionPerformed
