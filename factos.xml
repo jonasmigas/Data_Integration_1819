@@ -1,14 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises>
-     <pais iso="AGO">
-          <nome>Angola</nome>
-          <cod_telef>+244</cod_telef>
-          <cod_inter>.ao</cod_inter>
-          <capital>Luanda</capital>
-          <cid_mais_pop />
-          <hino>Angola Avante!</hino>
-          <moeda>Kwanza</moeda>
-          <populacao>teste</populacao>
-          <area>teste</area>
-     </pais>
-</paises>
+<paises />

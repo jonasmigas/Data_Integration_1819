@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises>
-     <pais iso="AGO">
-          <nome>Angola</nome>
-          <continente>África</continente>
-          <presidente>João Lourenço</presidente>
-          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Angola.svg/125px-Flag_of_Angola.svg.png</link_flag>
-     </pais>
-</paises>
+<paises />
