@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.s9api.XdmValue;
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
 
 /**
  *
@@ -19,23 +24,22 @@ import java.util.regex.Pattern;
  */
 public class TP_ID {
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, SaxonApiException {
         // TODO code application logic here
 
         //procura_pais_por_continente("Ásia");
         //procura_continente_do_pais("Portugal"); //funciona
-        procura_iso_do_pais("Moçambique"); //funciona
-        //procura_pr_do_pais("Portugal"); //não funciona aqui. penso que é que por causa de estar a tentar fazer match de 3 linhas numa linha. acho que não fizemos nada parecido nas aulas
-        //procura_link_bandeira_do_pais("Portugal"); //nao funciona. não percebo porque, visto que é só uma linha      
-        //nao funciona porque no site a que estamos a ir existe mais do que uma ocurrencia para Portugal (por exemplo)
-        
-        //procura_capital("Angola"); //funciona
-        //cidade_mais_populosa("Portugal"); //não funciona pelo mesmo motivo
-        //procura_hino("Alemanha"); //funciona
-        //procura_moeda("Portugal"); //não funciona pelo mesmo motivo        
-        //procura_cod_telef("Portugal"); //não funciona pelo mesmo motivo
-        //procura_cod_internet("Portugal"); //não funciona pelo mesmo motivo
-
+        //procura_iso_do_pais("Portugal"); //funciona
+        //procura_pr_do_pais("Islândia"); //funciona
+        //procura_link_bandeira_do_pais("Espanha"); //funciona
+        //procura_capital("Portugal"); //funciona
+        //cidade_mais_populosa("Portugal"); //funciona 
+        //procura_hino("Itália"); //funciona em alguns
+        //procura_moeda("Alemanha"); //funciona
+        //procura_cod_telef("Alemanha"); //funciona
+        //procura_cod_internet("China"); //funciona
+        //procura_linguas_pais();// por fazer
+        adicionaPaisesFicheiro("França");
     }
 
     //procurar paises por continente fonte s2
@@ -108,8 +112,10 @@ public class TP_ID {
         String link = "https://pt.wikipedia.org/wiki/";
         String presidente = null;
         HttpRequestFunctions.httpRequest1(link, procura, "pr_pais.html");
-        String er = "<a href=[^<]+>Presidente</a>[^>]*[^u]*[^<]*\\n</td>\\n<td style=[^<]+<a href=[^>]+>([^<]+)</a>";
+        String er = "<a href=[^<]+>Presidente</a>[^>]*[^u]*[^<]*";
+        String er2 = "<td style=[^<]+<a href=[^>]+>([^<]+)</a>";
         Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("pr_pais.html"));
         Matcher m;
         String linha;
@@ -117,8 +123,13 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                presidente = m.group(1);
+                linha = ler.nextLine();
+                linha = ler.nextLine();
+                m = p2.matcher(linha);
+                if (m.find()) {
+                    System.out.println(m.group(1));
+                    presidente = m.group(1);
+                }
             }
         }
         ler.close();
@@ -127,10 +138,10 @@ public class TP_ID {
 
     //procurar presidente da república um país fonte s1
     static String procura_link_bandeira_do_pais(String procura) throws FileNotFoundException, IOException {
-        String link = "http://pt.wikipedia.org/wiki/Lista_de_Estados_soberanos_e_territórios_dependentes_por_continente";
+        String link = "https://pt.wikipedia.org/wiki/";
         String bandeira = null;
-        HttpRequestFunctions.httpRequest1(link, "", "bandeira_pais.html");
-        String er = "<td><span class=\"flagicon\"><a href=\"/wiki/[^\"]+\" title=\"" + procura + "\"><img alt=\"[^\"]+\" src=\"[^\"]+\" decoding=\"async\" width=\"[0-9]+\" height=\"[0-9]+\" class=\"thumbborder\" srcset=\"[^,]+,([^\"]+)\" data-file-width=\"[0-9]+\" data-file-height=\"[0-9]+\" /></a></span>";
+        HttpRequestFunctions.httpRequest1(link, procura, "bandeira_pais.html");
+        String er = "title=\"Bandeira d[^0-9]+ [^0-9]+\"><img alt=\"Bandeira d[^0-9]+ [^0-9]+\" src=\"(//upload.wikimedia.org/wikipedia/commons/thumb/[0-9a-z]+/[0-9a-z]+/Flag_of_[A-Za-z_]+.svg/125px-Flag_of_[A-Za-z_]+.svg.png)\"";
         Pattern p = Pattern.compile(er);
         Scanner ler = new Scanner(new FileInputStream("bandeira_pais.html"));
         Matcher m;
@@ -152,8 +163,10 @@ public class TP_ID {
         String link = "https://pt.wikipedia.org/wiki/";
         String cod_tel = null;
         HttpRequestFunctions.httpRequest1(link, procura, "cod_telef.html");
-        String er = "<a href=\"/wiki/[^\"]+\" title=\"Lista de códigos telefónicos\">[^\"]+</a></b>\\n</td>\\n<td style=\"[^\"]+\"><code>([^<]+)</code>";
+        String er = "<td style=\"[^>]+><b><a href=\"[^\"]+\" title=\"Lista de códigos telefónicos\">Cód. telef.</a></b>";
+        String er2 = "<td style=\"[^>]+><code>([^<]+)</code>";
         Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("cod_telef.html"));
         Matcher m;
         String linha;
@@ -161,8 +174,13 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                cod_tel = m.group(1);
+                linha = ler.nextLine();
+                linha = ler.nextLine();
+                m = p2.matcher(linha);
+                if (m.find()) {
+                    System.out.println(m.group(1));
+                    cod_tel = m.group(1);
+                }
             }
         }
         ler.close();
@@ -174,10 +192,10 @@ public class TP_ID {
         String link = "https://pt.wikipedia.org/wiki/";
         String cod_net = null;
         HttpRequestFunctions.httpRequest1(link, procura, "cod_internet.html");
-        String er = "<td style=\"[^\"]+\"><b><a href=\"/wiki/Lista_de_TLDs\" title=\"Lista de TLDs\">[^<]+</a></b>\\n"
-                + "</td>\\n"
-                + "<td style=\"[^\"]+\"><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">([^<]+)</a>";
+        String er = "<td style=\"[^\"]+\"><b><a href=\"/wiki/Lista_de_TLDs\" title=\"Lista de TLDs\">[^<]+</a></b>";
+        String er2 = "<td style=\"[^\"]+\"><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">([^<]+)</a>";
         Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("cod_internet.html"));
         Matcher m;
         String linha;
@@ -185,8 +203,13 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                cod_net = m.group(1);
+                linha = ler.nextLine();
+                linha = ler.nextLine();
+                m = p2.matcher(linha);
+                if (m.find()) {
+                    System.out.println(m.group(1));
+                    cod_net = m.group(1);
+                }
             }
         }
         ler.close();
@@ -220,8 +243,10 @@ public class TP_ID {
         String link = "https://pt.wikipedia.org/wiki/";
         String populosa = null;
         HttpRequestFunctions.httpRequest1(link, procura, "cidade_populosa.html");
-        String er = "<td style=\"[^\"]+\"><b>Cidade mais populosa</b>\\r?\\n</td>\\r?\\n<td style=\"[^\"]+\"><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">([^<]+)</a>";
+        String er = "<b>Cidade mais populosa</b>";
+        String er2 = "title=\"[a-zA-Z\\d]+\">([a-zA-Z\\d]+)</a>";
         Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("cidade_populosa.html"));
         Matcher m;
         String linha;
@@ -229,8 +254,13 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                populosa = m.group(1);
+                linha = ler.nextLine();
+                linha = ler.nextLine();
+                m = p2.matcher(linha);
+                if (m.find()) {
+                    System.out.println(m.group(1));
+                    populosa = m.group(1);
+                }
             }
         }
         ler.close();
@@ -242,7 +272,7 @@ public class TP_ID {
         String link = "https://pt.wikipedia.org/wiki/";
         String hino = null;
         HttpRequestFunctions.httpRequest1(link, procura, "hino_nacional.html");
-        String er = "<a href=\"/wiki/Hino_nacional\" title=\"Hino nacional\">Hino nacional</a>: <i><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">([^<]+)</a>";
+        String er = "<a href=\"/wiki/Hino_nacional\" title=\"Hino nacional\">Hino nacional</a>: (<i>)*<a href=\"/wiki/[^\"]+\"([^=]+=\"[^\"]+\")*[^=]+=\"[^\"]+\">(<i>)*([^<]+)</[ai]>";
         Pattern p = Pattern.compile(er);
         Scanner ler = new Scanner(new FileInputStream("hino_nacional.html"));
         Matcher m;
@@ -251,8 +281,8 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                hino = m.group(1);
+                System.out.println(m.group(4));
+                hino = m.group(4);
             }
         }
         ler.close();
@@ -261,14 +291,13 @@ public class TP_ID {
 
     //procurar moeda de um país fonte s1
     static String procura_moeda(String procura) throws FileNotFoundException, IOException {
-        String link = "https://pt.wikipedia.org/wiki/ISO_4217";
+        String link = "https://pt.wikipedia.org/wiki/";
         String moeda = null;
-        HttpRequestFunctions.httpRequest1(link, "", "moeda.html");
-        String er = "<td><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">([^<]+)</a></td>\\n"
-                + "<td><span class=\"flagicon\"><img alt=\"\" src=\"[^\"]+\" decoding=\"async\" width=\"[^\"]+\" "
-                + "height=\"[^\"]+\" class=\"thumbborder\" srcset=\"[^\"]+\" data-file-width=\"[^\"]+\" data-file-height=\"[^\"]+\" />"
-                + "&#[^\"]+;</span><a href=\"/wiki/[^\"]+\" title=\"[^\"]+\">" + procura + "</a>";
+        HttpRequestFunctions.httpRequest1(link, procura, "moeda.html");
+        String er = "<td style=\"[^>]+><b><a href=\"[^\"]+\" title=\"Moeda\">Moeda</a></b>";
+        String er2 = "<td style=\"[^>]+><a href=\"[^\"]+\"( class=\"[^\"]+\")? title=\"[^>]+>([^<]+)</a>";
         Pattern p = Pattern.compile(er);
+        Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("moeda.html"));
         Matcher m;
         String linha;
@@ -276,12 +305,84 @@ public class TP_ID {
             linha = ler.nextLine();
             m = p.matcher(linha);
             if (m.find()) {
-                System.out.println(m.group(1));
-                moeda = m.group(1);
+                linha = ler.nextLine();
+                linha = ler.nextLine();
+                m = p2.matcher(linha);
+                if (m.find()) {
+                    System.out.println(m.group(2));
+                    moeda = m.group(2);
+                }
             }
         }
         ler.close();
         return moeda;
+    }
+
+    public static Document adicionaPais(Paises p, Document doc) {
+
+        Element raiz;
+        if (doc == null) {
+            raiz = new Element("paises"); //cria <paises>...</paises>
+            doc = new Document(raiz);
+        } else {
+            raiz = doc.getRootElement();
+        }
+
+        Element pais = new Element("pais");
+
+        Attribute iso = new Attribute("iso", p.getIso());
+        pais.setAttribute(iso);
+
+        Element nome = new Element("nome");
+        nome.addContent(p.getNome());
+
+        Element continente = new Element("continente");
+        continente.addContent(p.getContinente());
+
+        Element presidente = new Element("presidente");
+        presidente.addContent(p.getPres_rep());
+
+        Element link_flag = new Element("link_flag");
+        link_flag.addContent(p.getBandeira());
+
+        pais.addContent(nome);
+        pais.addContent(continente);
+        pais.addContent(presidente);
+        pais.addContent(link_flag);
+        raiz.addContent(pais);
+
+        return doc;
+
+    }
+
+    public static void adicionaPaisesFicheiro(String paisInt) throws FileNotFoundException, IOException, SaxonApiException {
+
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        Element raiz;
+        if (doc == null) {
+            raiz = new Element("paises"); //cria <paises>...</paises>
+            doc = new Document(raiz);
+        } else {
+            raiz = doc.getRootElement();
+        }
+
+        String iso = procura_iso_do_pais(paisInt);
+
+        String verif_rep = "//pais[@iso='" + iso + "']";
+        //System.out.println(verif_rep);
+        XdmValue res = XPathFunctions.executaXpath(verif_rep, "paises.xml");
+        if (res != null && res.size() > 0) {
+            System.out.println("PAÍS JÁ EXISTE!");
+        } else {
+            String continente = procura_continente_do_pais(paisInt);
+            String presidente = procura_pr_do_pais(paisInt);
+            String link_flag = procura_link_bandeira_do_pais(paisInt);
+
+            Paises p = new Paises(iso, paisInt, continente, presidente, link_flag);
+            doc = adicionaPais(p, doc);
+
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
+        }
     }
 
 }
