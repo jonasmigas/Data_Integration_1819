@@ -34,24 +34,28 @@ public class TP_ID {
         //procura_pr_do_pais("Islândia"); //funciona
         //procura_link_bandeira_do_pais("Espanha"); //funciona
         //procura_capital("Portugal"); //funciona
-        //cidade_mais_populosa("Portugal"); //funciona 
+        //cidade_mais_populosa("França"); //funciona 
         //procura_hino("Itália"); //funciona em alguns
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
         //procura_linguas_pais();// por fazer
+        
+
         //adicionaPaisesFicheiro("França");
-        //removePais("Portugal");
+        
+        
+        removePaisFicheiros("Brasil");
 
-        adicionaInfoAmbosFicheiros("Brasil");
+        //adicionaInfoAmbosFicheiros("Espanha");
 
 
-        adicionaInfoAmbosFicheiros("Portugal");
+        //adicionaInfoAmbosFicheiros("Portugal");
 
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
         //alteraPresidente("França", "Chirac");
-        alteraPopulacao("França", "23");
+        //alteraPopulacao("França", "23");
     }
 
     //procurar paises por continente fonte s2
@@ -256,7 +260,7 @@ public class TP_ID {
         String populosa = null;
         HttpRequestFunctions.httpRequest1(link, procura, "cidade_populosa.html");
         String er = "<b>Cidade mais populosa</b>";
-        String er2 = "title=\"[a-zA-Z\\d]+\">([a-zA-Z\\d]+)</a>";
+        String er2 = "<td style=\"[^>]+>([^>]+>)?([a-zA-Z\\d]+)";
         Pattern p = Pattern.compile(er);
         Pattern p2 = Pattern.compile(er2);
         Scanner ler = new Scanner(new FileInputStream("cidade_populosa.html"));
@@ -270,8 +274,8 @@ public class TP_ID {
                 linha = ler.nextLine();
                 m = p2.matcher(linha);
                 if (m.find()) {
-                    System.out.println(m.group(1));
-                    populosa = m.group(1);
+                    System.out.println(m.group(2));
+                    populosa = m.group(2);
                 }
             }
         }
@@ -478,7 +482,7 @@ public class TP_ID {
             String cod_telef = procura_cod_telef(paisInt);
             String cod_inter = procura_cod_internet(paisInt);
             String capital = procura_capital(paisInt);
-            String cid_mais_pop = cidade_mais_populosa(paisInt);;
+            String cid_mais_pop = cidade_mais_populosa(paisInt);
             String hino = procura_hino(paisInt);
             String moeda = procura_moeda(paisInt);
             String populacao = "teste";
@@ -498,29 +502,56 @@ public class TP_ID {
         
     }
     
-    //remover 
-    public static Document removePais(String procura) {
+
+    
+    //remover um pais dos ficheiro paises.xml e factos.xml
+    public static Document removePaisFicheiros(String procura) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        String iso = "";
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
-            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            Element pais = (Element)todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
+                iso = pais.getAttributeValue("iso");   
                 pais.getParent().removeContent(pais);
-                System.out.println("Pais removido com sucesso!");
+                System.out.println("Pais removido com sucesso do ficheiro livros.xml!");
                 found = true;
             }
         }
         if (!found) {
             System.out.println("Pais " + procura + " não foi encontrado");
         }
+        
+        
+        Document doc2 = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        Element raiz2;
+        raiz2 = doc2.getRootElement();
+        List factos = raiz2.getChildren("pais");
+        boolean found2 = false;
+
+        for (int i = 0; i < factos.size(); i++) {
+            Element pais = (Element)factos.get(i); //obtem pais i da Lista
+            if (pais.getAttributeValue("iso").equals(iso)) {
+                pais.getParent().removeContent(pais);
+                System.out.println("Pais removido com sucesso do ficheiro factos.xml!");
+                found2 = true;
+            }
+        }
+        if (!found2) {
+            System.out.println("Pais " + procura + " não foi encontrado");
+        }
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "paises.xml");
+        XMLJDomFunctions.escreverDocumentoParaFicheiro(doc2, "factos.xml");
+        
         return doc;
     }
 
+   
+    
     
     //funcao para alterar o presidente do pais inserido no parametro
     public static Document alteraPresidente(String procura, String novoPresidente) {
@@ -549,7 +580,7 @@ public class TP_ID {
     }
     
     
-    //funcao para alterar o presidente do pais inserido no parametro
+    //funcao para alterar a alteracao do pais inserida no parametro
     public static Document alteraPopulacao(String procura, String novaPopulacao) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         Element raiz;

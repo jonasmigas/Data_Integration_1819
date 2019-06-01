@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paises>
-     <pais iso="BRA">
-          <nome>Brasil</nome>
-          <continente>América</continente>
-          <presidente>Jair Bolsonaro</presidente>
-          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png</link_flag>
-     </pais>
      <pais iso="AGO">
           <nome>Angola</nome>
           <continente>África</continente>

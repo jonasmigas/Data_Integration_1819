@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paises>
-     <pais iso="BRA">
-          <nome>Brasil</nome>
-          <cod_telef>+55</cod_telef>
-          <cod_inter>.br</cod_inter>
-          <capital>Brasília</capital>
-          <cid_mais_pop />
-          <hino>La Marseillaise</hino>
-          <moeda>Euro</moeda>
-          <populacao>23</populacao>
-          <hino>Hino Nacional Brasileiro</hino>
-          <moeda>Real</moeda>
-          <populacao>teste</populacao>
-          <area>teste</area>
-     </pais>
      <pais iso="AGO">
           <nome>Angola</nome>
           <cod_telef>+244</cod_telef>
