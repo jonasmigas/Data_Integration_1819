@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE paises SYSTEM "paises.dtd">
 <paises>
      <pais iso="PRT">
           <nome>Portugal</nome>

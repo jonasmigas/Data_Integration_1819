@@ -4,15 +4,15 @@
 	
 	<xsl:template match="paises">
 		
-<TOP_5_mais_populacao>
+<Top5_Mais_Populacao>
 		      
 <xsl:apply-templates select="pais">
-	<xsl:sort select="capital" order="descending"/>
+	<xsl:sort select="populacao" order="descending"/>
 </xsl:apply-templates>
-*</TOP_5_mais_populacao>
+*</Top5_Mais_Populacao>
 	</xsl:template>
-	<xsl:template match="pais">_________
-	***<xsl:value-of select="@iso"/>***
+	<xsl:template match="pais"><xsl:text>&#160;</xsl:text><xsl:text>&#xA;</xsl:text>
+	<xsl:value-of select="concat(' ',@iso,' | ',populacao,' ')"/>
 	</xsl:template>
 </xsl:stylesheet>
 
