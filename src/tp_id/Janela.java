@@ -81,7 +81,7 @@ public class Janela extends javax.swing.JFrame {
         RemoverPais = new javax.swing.JMenuItem();
         MenuXSLT = new javax.swing.JMenu();
         XMLparaHTML_FLAGS = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        MenuValidar = new javax.swing.JMenu();
         ValidarPaisesDTD = new javax.swing.JMenuItem();
         ValidarFactosDTD = new javax.swing.JMenuItem();
         ValidarPaisesXSD = new javax.swing.JMenuItem();
@@ -385,7 +385,7 @@ public class Janela extends javax.swing.JFrame {
 
         MenuBar.add(MenuXSLT);
 
-        jMenu1.setText("Validar");
+        MenuValidar.setText("Validar");
 
         ValidarPaisesDTD.setText("Validar paises.xml DTD");
         ValidarPaisesDTD.addActionListener(new java.awt.event.ActionListener() {
@@ -393,7 +393,7 @@ public class Janela extends javax.swing.JFrame {
                 ValidarPaisesDTDActionPerformed(evt);
             }
         });
-        jMenu1.add(ValidarPaisesDTD);
+        MenuValidar.add(ValidarPaisesDTD);
 
         ValidarFactosDTD.setText("Validar factos.xml DTD");
         ValidarFactosDTD.addActionListener(new java.awt.event.ActionListener() {
@@ -401,7 +401,7 @@ public class Janela extends javax.swing.JFrame {
                 ValidarFactosDTDActionPerformed(evt);
             }
         });
-        jMenu1.add(ValidarFactosDTD);
+        MenuValidar.add(ValidarFactosDTD);
 
         ValidarPaisesXSD.setText("Validar paises.xml XSD");
         ValidarPaisesXSD.addActionListener(new java.awt.event.ActionListener() {
@@ -409,7 +409,7 @@ public class Janela extends javax.swing.JFrame {
                 ValidarPaisesXSDActionPerformed(evt);
             }
         });
-        jMenu1.add(ValidarPaisesXSD);
+        MenuValidar.add(ValidarPaisesXSD);
 
         ValidarFactosXSD.setText("Validar factos.xml XSD");
         ValidarFactosXSD.addActionListener(new java.awt.event.ActionListener() {
@@ -417,9 +417,9 @@ public class Janela extends javax.swing.JFrame {
                 ValidarFactosXSDActionPerformed(evt);
             }
         });
-        jMenu1.add(ValidarFactosXSD);
+        MenuValidar.add(ValidarFactosXSD);
 
-        MenuBar.add(jMenu1);
+        MenuBar.add(MenuValidar);
 
         setJMenuBar(MenuBar);
 
@@ -685,6 +685,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuEditar;
     private javax.swing.JMenu MenuPrincipal;
     private javax.swing.JMenu MenuRemover;
+    private javax.swing.JMenu MenuValidar;
     private javax.swing.JMenu MenuXML;
     private javax.swing.JMenu MenuXSLT;
     private javax.swing.JMenuItem RemoverPais;
@@ -702,7 +703,6 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
