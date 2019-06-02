@@ -25,4 +25,43 @@
                <idioma>[Português, Mirandês]</idioma>
           </lista_idiomas>
      </pais>
+     <pais iso="MEX">
+          <cod_telef>+52</cod_telef>
+          <cod_inter>.mx</cod_inter>
+          <capital>Cidade do México</capital>
+          <cid_mais_pop>Cidade</cid_mais_pop>
+          <hino>Hino nacional do México</hino>
+          <moeda>Peso mexicano</moeda>
+          <populacao>130 759 074</populacao>
+          <area>1 964 380</area>
+          <lista_idiomas>
+               <idioma>[Espanhol]</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="BRA">
+          <cod_telef>+55</cod_telef>
+          <cod_inter>.br</cod_inter>
+          <capital>Brasília</capital>
+          <cid_mais_pop>S</cid_mais_pop>
+          <hino>Hino Nacional Brasileiro</hino>
+          <moeda>Real</moeda>
+          <populacao>210 867 954</populacao>
+          <area>8 514 880</area>
+          <lista_idiomas>
+               <idioma>[Português]</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="CYP">
+          <cod_telef>+357</cod_telef>
+          <cod_inter>.cy</cod_inter>
+          <capital>Nicósia</capital>
+          <cid_mais_pop>Nic</cid_mais_pop>
+          <hino>Hino à Liberdade</hino>
+          <moeda>Euro</moeda>
+          <populacao>1 189 085</populacao>
+          <area>9 251</area>
+          <lista_idiomas>
+               <idioma>[Grego, Turco, Inglês]</idioma>
+          </lista_idiomas>
+     </pais>
 </paises>

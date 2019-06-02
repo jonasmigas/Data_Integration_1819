@@ -591,7 +591,9 @@ public class Janela extends javax.swing.JFrame {
     private void ValidarPaisesDTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarPaisesDTDActionPerformed
         try {
             // TODO add your handling code here:
-            validarDocumentoDTD("paises.xml", "paises.dtd");
+            String s;
+            s=validarDocumentoDTD("paises.xml", "paises.dtd");
+            jTextArea1.setText(s);
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -600,7 +602,9 @@ public class Janela extends javax.swing.JFrame {
     private void ValidarFactosDTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarFactosDTDActionPerformed
         try {
             // TODO add your handling code here:
-            validarDocumentoDTD("factos.xml", "factos.dtd");
+            String s;
+            s=validarDocumentoDTD("factos.xml", "factos.dtd");
+            jTextArea1.setText(s);
         } catch (IOException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -608,12 +612,16 @@ public class Janela extends javax.swing.JFrame {
 
     private void ValidarPaisesXSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarPaisesXSDActionPerformed
         // TODO add your handling code here:
-        validarDocumentoXSD("paises.xml", "paises.xsd");
+        String s;
+        s=validarDocumentoXSD("paises.xml", "paises.xsd");
+        jTextArea1.setText(s);
     }//GEN-LAST:event_ValidarPaisesXSDActionPerformed
 
     private void ValidarFactosXSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarFactosXSDActionPerformed
         // TODO add your handling code here:
-        validarDocumentoXSD("factos.xml", "factos.xsd");
+        String s;
+        s=validarDocumentoXSD("factos.xml", "factos.xsd");
+        jTextArea1.setText(s);
     }//GEN-LAST:event_ValidarFactosXSDActionPerformed
 
     /**

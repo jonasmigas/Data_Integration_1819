@@ -767,9 +767,10 @@ public class TP_ID {
     
     
     //validacao dtd
-    public static int validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
+    public static String validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
         File f = new File(DTDFile);
+        String s = " ";
         if (doc != null && f.exists()) { //DTD e XML existem
             Element raiz = doc.getRootElement();
             //Atribuir DTD ao ficheiro XML
@@ -781,19 +782,22 @@ public class TP_ID {
             Document docDTD = JDOMFunctions_Validar.validarDTD(xmlFile);
             if (docDTD == null) {
                 System.out.println("INVALIDO por DTD");
-                return -1;
+                s="Ficheiro " + xmlFile + " INVALIDADO por DTD";
+                return s;
             } else {
                 System.out.println("VALIDO por DTD");
-                return 1;
+                s = "Ficheiro " + xmlFile + " VALIDO por DTD";
+                return s;
             }
         }
-        return 0;
+        return s;
     }
     
     //validacao xsd
-    public static int validarDocumentoXSD(String xmlFile, String XSDFile) {
+    public static String validarDocumentoXSD(String xmlFile, String XSDFile) {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
         File f = new File(XSDFile);
+        String s = " ";
         if (doc != null && f.exists()) {//XSD e XML existem
             Element raiz = doc.getRootElement();
             //Atribuir XSD ao ficheiro XML
@@ -806,13 +810,15 @@ public class TP_ID {
             Document docXSD = JDOMFunctions_Validar.validarXSD(xmlFile);
             if (docXSD == null) {
                 System.out.println("INVALIDO por XSD");
-                return -1;
+                s="Ficheiro " + xmlFile + " INVALIDADO por DTD";
+                return s;
             } else {
                 System.out.println("VALIDO por XSD");
-                return 1;
+                s = "Ficheiro " + xmlFile + " VALIDO por DTD";
+                return s;
             }
         }
-        return 0;
+        return s;
     }
 
 }
