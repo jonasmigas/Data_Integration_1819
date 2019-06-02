@@ -64,7 +64,7 @@ public class TP_ID {
         //alteraPresidente("França", "Chirac");
         //alteraPopulacao("Angola", "23");
         //alteraCidadePopulosa("Angola", "Benguela");
-        procura_pais_por_idioma("Espanhol");
+        //procura_pais_por_idioma("Espanhol");
         //procura_pais_por_continente("América");
     }
 
@@ -824,12 +824,12 @@ public class TP_ID {
         String xp = "//pais/lista_idiomas[idioma = '" + procura + "']/../@iso";
         XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
         String s = XPathFunctions.listaResultado(res);
-        //System.out.println(s);
-        //String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
+        System.out.println(s);
+        String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
 
-        //XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
-        //String s1 = XPathFunctions.listaResultado(res1);
-        //System.out.println(s1);
+        XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
+        String s1 = XPathFunctions.listaResultado(res1);
+        System.out.println(s1);
         if (res == null) {
             System.out.println("Ficheiro XML não existe");
         } else if (res.size() == 0) {

@@ -911,16 +911,20 @@ public class Janela extends javax.swing.JFrame {
 
     private void BotaoPesquisaPaisLinguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisaPaisLinguaActionPerformed
         // TODO add your handling code here:
+
+
         String pesquisa = CampoTextLingua.getText();
         String s;        
         try {
             s= procura_pais_por_idioma(pesquisa);
+
             jTextArea1.setText(s);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SaxonApiException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_BotaoPesquisaPaisLinguaActionPerformed
 
     private void ProcuraPaisesPorContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcuraPaisesPorContinenteActionPerformed
