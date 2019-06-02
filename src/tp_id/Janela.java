@@ -74,6 +74,10 @@ public class Janela extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         CampoTextContinente = new javax.swing.JTextField();
         BotaoPesquisaPaisContinente = new javax.swing.JButton();
+        JanelaProcPaisLingua = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        CampoTextLingua = new javax.swing.JTextField();
+        BotaoPesquisaPaisLingua = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
@@ -98,6 +102,7 @@ public class Janela extends javax.swing.JFrame {
         XMLparaXML_EURO = new javax.swing.JMenuItem();
         MenuXPATH = new javax.swing.JMenu();
         ProcurarPaisesPorContinente = new javax.swing.JMenuItem();
+        ProcuraPaisesPorContinente = new javax.swing.JMenuItem();
         MenuValidar = new javax.swing.JMenu();
         ValidarPaisesDTD = new javax.swing.JMenuItem();
         ValidarFactosDTD = new javax.swing.JMenuItem();
@@ -380,6 +385,49 @@ public class Janela extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jLabel10.setText("Língua Oficial:");
+
+        CampoTextLingua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextLinguaActionPerformed(evt);
+            }
+        });
+
+        BotaoPesquisaPaisLingua.setText("Pesquisar");
+        BotaoPesquisaPaisLingua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoPesquisaPaisLinguaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JanelaProcPaisLinguaLayout = new javax.swing.GroupLayout(JanelaProcPaisLingua.getContentPane());
+        JanelaProcPaisLingua.getContentPane().setLayout(JanelaProcPaisLinguaLayout);
+        JanelaProcPaisLinguaLayout.setHorizontalGroup(
+            JanelaProcPaisLinguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaProcPaisLinguaLayout.createSequentialGroup()
+                .addGroup(JanelaProcPaisLinguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaProcPaisLinguaLayout.createSequentialGroup()
+                        .addContainerGap(269, Short.MAX_VALUE)
+                        .addComponent(BotaoPesquisaPaisLingua))
+                    .addGroup(JanelaProcPaisLinguaLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel10)
+                        .addGap(17, 17, 17)
+                        .addComponent(CampoTextLingua)))
+                .addGap(31, 31, 31))
+        );
+        JanelaProcPaisLinguaLayout.setVerticalGroup(
+            JanelaProcPaisLinguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaProcPaisLinguaLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(JanelaProcPaisLinguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(CampoTextLingua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BotaoPesquisaPaisLingua)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
@@ -523,6 +571,14 @@ public class Janela extends javax.swing.JFrame {
             }
         });
         MenuXPATH.add(ProcurarPaisesPorContinente);
+
+        ProcuraPaisesPorContinente.setText("Procurar Países por Língua");
+        ProcuraPaisesPorContinente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProcuraPaisesPorContinenteActionPerformed(evt);
+            }
+        });
+        MenuXPATH.add(ProcuraPaisesPorContinente);
 
         MenuBar.add(MenuXPATH);
 
@@ -809,7 +865,7 @@ public class Janela extends javax.swing.JFrame {
         String s;
         try {
             s = procura_pais_por_continente(procura);
-            jTextArea1.setText(s);            
+            jTextArea1.setText(s);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SaxonApiException ex) {
@@ -832,6 +888,26 @@ public class Janela extends javax.swing.JFrame {
             jTextArea1.setText(t);
          }
     }//GEN-LAST:event_XMLparaXML_EUROActionPerformed
+
+    private void CampoTextLinguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextLinguaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextLinguaActionPerformed
+
+    private void BotaoPesquisaPaisLinguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisaPaisLinguaActionPerformed
+        // TODO add your handling code here:
+        String procura = CampoTextLingua.getText();
+        String s;
+        s = procura_pais_por_lingua(procura);
+        jTextArea1.setText(s);
+    }//GEN-LAST:event_BotaoPesquisaPaisLinguaActionPerformed
+
+    private void ProcuraPaisesPorContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcuraPaisesPorContinenteActionPerformed
+        // TODO add your handling code here:
+        JanelaProcPaisLingua.setSize(400, 250);
+        JanelaProcPaisLingua.setLocation(300, 300);
+        JanelaProcPaisLingua.setTitle("Procurar Países por Língua Oficial");
+        JanelaProcPaisLingua.setVisible(true);
+    }//GEN-LAST:event_ProcuraPaisesPorContinenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -877,9 +953,11 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton BotaoEditaPop;
     private javax.swing.JButton BotaoEditaPresi;
     private javax.swing.JButton BotaoPesquisaPaisContinente;
+    private javax.swing.JButton BotaoPesquisaPaisLingua;
     private javax.swing.JButton BotaoRemoverPais;
     private javax.swing.JTextField CampoTextCidadeMPop;
     private javax.swing.JTextField CampoTextContinente;
+    private javax.swing.JTextField CampoTextLingua;
     private javax.swing.JTextField CampoTextPaisParaAdicionar;
     private javax.swing.JTextField CampoTextPaisParaEditarCidMPop;
     private javax.swing.JTextField CampoTextPaisParaEditarPop;
@@ -895,6 +973,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JDialog JanelaEditaPop;
     private javax.swing.JDialog JanelaEditaPresi;
     private javax.swing.JDialog JanelaProcPaisContinente;
+    private javax.swing.JDialog JanelaProcPaisLingua;
     private javax.swing.JDialog JanelaRemovePais;
     private javax.swing.JMenu MenuAdicionar;
     private javax.swing.JMenuBar MenuBar;
@@ -905,6 +984,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuXML;
     private javax.swing.JMenu MenuXPATH;
     private javax.swing.JMenu MenuXSLT;
+    private javax.swing.JMenuItem ProcuraPaisesPorContinente;
     private javax.swing.JMenuItem ProcurarPaisesPorContinente;
     private javax.swing.JMenuItem RemoverPais;
     private javax.swing.JMenuItem Sair;
@@ -918,6 +998,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem XMLparaTXT_TOP5;
     private javax.swing.JMenuItem XMLparaXML_EURO;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -929,4 +1010,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private String procura_pais_por_lingua(String procura) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
