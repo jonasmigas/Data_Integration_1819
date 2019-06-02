@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import net.sf.saxon.s9api.SaxonApiException;
 import org.jdom2.Document;
 import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
+import static tp_id.TP_ID.alteraCidadePopulosa;
 import static tp_id.TP_ID.alteraPopulacao;
 import static tp_id.TP_ID.alteraPresidente;
 import static tp_id.TP_ID.removePaisFicheiros;
@@ -61,6 +62,12 @@ public class Janela extends javax.swing.JFrame {
         BotaoEditaPop = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         CampoTextPopulacao = new javax.swing.JTextField();
+        JanelaEditaCidaMPop = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        CampoTextPaisParaEditarCidMPop = new javax.swing.JTextField();
+        BotaoEditaCidadeMPop = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        CampoTextCidadeMPop = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
@@ -265,6 +272,59 @@ public class Janela extends javax.swing.JFrame {
                     .addComponent(CampoTextPopulacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(BotaoEditaPop)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        jLabel7.setText("Nome do País:");
+
+        BotaoEditaCidadeMPop.setText("Alterar Informação");
+        BotaoEditaCidadeMPop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoEditaCidadeMPopActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Nome da Cidade");
+
+        CampoTextCidadeMPop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextCidadeMPopActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JanelaEditaCidaMPopLayout = new javax.swing.GroupLayout(JanelaEditaCidaMPop.getContentPane());
+        JanelaEditaCidaMPop.getContentPane().setLayout(JanelaEditaCidaMPopLayout);
+        JanelaEditaCidaMPopLayout.setHorizontalGroup(
+            JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaEditaCidaMPopLayout.createSequentialGroup()
+                .addGroup(JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaEditaCidaMPopLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoEditaCidadeMPop))
+                    .addGroup(JanelaEditaCidaMPopLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
+                        .addGap(7, 7, 7)
+                        .addGroup(JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CampoTextPaisParaEditarCidMPop)
+                            .addComponent(CampoTextCidadeMPop, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))))
+                .addGap(31, 31, 31))
+        );
+        JanelaEditaCidaMPopLayout.setVerticalGroup(
+            JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaEditaCidaMPopLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(CampoTextPaisParaEditarCidMPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(JanelaEditaCidaMPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(CampoTextCidadeMPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BotaoEditaCidadeMPop)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -573,10 +633,10 @@ public class Janela extends javax.swing.JFrame {
 
     private void EditarCidMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarCidMPopActionPerformed
         // TODO add your handling code here:
-        JanelaEditaPop.setSize(400, 250);
-        JanelaEditaPop.setLocation(300, 300);
-        JanelaEditaPop.setTitle("Editar Cidade mais populosa de um país");
-        JanelaEditaPop.setVisible(true);
+        JanelaEditaCidaMPop.setSize(400, 250);
+        JanelaEditaCidaMPop.setLocation(300, 300);
+        JanelaEditaCidaMPop.setTitle("Editar Cidade mais populosa de um país");
+        JanelaEditaCidaMPop.setVisible(true);
     }//GEN-LAST:event_EditarCidMPopActionPerformed
 
     private void XMLparaHTML_FLAGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaHTML_FLAGSActionPerformed
@@ -651,6 +711,18 @@ public class Janela extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_XMLparaTXT_TOP5ActionPerformed
 
+    private void BotaoEditaCidadeMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditaCidadeMPopActionPerformed
+        // TODO add your handling code here:
+        String pesquisa = CampoTextPaisParaEditarCidMPop.getText();
+        String novaCidMP = CampoTextCidadeMPop.getText();
+        
+        alteraCidadePopulosa(pesquisa, novaCidMP);
+    }//GEN-LAST:event_BotaoEditaCidadeMPopActionPerformed
+
+    private void CampoTextCidadeMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextCidadeMPopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextCidadeMPopActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -691,10 +763,13 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem ApagarFactosXML;
     private javax.swing.JMenuItem ApagarPaisesXML;
     private javax.swing.JButton BotaoAdicionarPais;
+    private javax.swing.JButton BotaoEditaCidadeMPop;
     private javax.swing.JButton BotaoEditaPop;
     private javax.swing.JButton BotaoEditaPresi;
     private javax.swing.JButton BotaoRemoverPais;
+    private javax.swing.JTextField CampoTextCidadeMPop;
     private javax.swing.JTextField CampoTextPaisParaAdicionar;
+    private javax.swing.JTextField CampoTextPaisParaEditarCidMPop;
     private javax.swing.JTextField CampoTextPaisParaEditarPop;
     private javax.swing.JTextField CampoTextPaisParaEditarPres;
     private javax.swing.JTextField CampoTextPaisParaRemover;
@@ -704,6 +779,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem EditarPopPais;
     private javax.swing.JMenuItem EditarPresPais;
     private javax.swing.JDialog JanelaAdicionaPais;
+    private javax.swing.JDialog JanelaEditaCidaMPop;
     private javax.swing.JDialog JanelaEditaPop;
     private javax.swing.JDialog JanelaEditaPresi;
     private javax.swing.JDialog JanelaRemovePais;
@@ -731,6 +807,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
