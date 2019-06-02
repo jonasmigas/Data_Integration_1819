@@ -788,10 +788,10 @@ public class Janela extends javax.swing.JFrame {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         if (doc != null) {
             Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "paises.xml", "transf_html.xsl");
-            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "teste.html");
-            doc = XMLJDomFunctions.lerDocumentoXML("teste.html");
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "bandeiras.html");
+            doc = XMLJDomFunctions.lerDocumentoXML("bandeiras.html");
             String t = XMLJDomFunctions.escreverDocumentoString(doc);
-            String url = "teste.html";
+            String url = "bandeiras.html";
             File htmlFile = new File(url);
             try {
                 Desktop.getDesktop().browse(htmlFile.toURI());
@@ -934,7 +934,7 @@ public class Janela extends javax.swing.JFrame {
     private void XMLparaXML_DENSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaXML_DENSActionPerformed
         try {
             // TODO add your handling code here:
-            SaxonFunctions_XQuery.xQueryToXml("test.xml", "densidade_pop.xql");
+            SaxonFunctions_XQuery.xQueryToXml("Densidade_Pop.xml", "densidade_pop.xql");
         } catch (XPathException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises>
+<!DOCTYPE paises SYSTEM "paises.dtd">
+<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="paises.xsd">
      <pais iso="PRT">
           <nome>Portugal</nome>
           <continente>Europa</continente>
