@@ -713,10 +713,10 @@ public class Janela extends javax.swing.JFrame {
 
     private void BotaoEditaCidadeMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditaCidadeMPopActionPerformed
         // TODO add your handling code here:
-        String pesquisa = CampoTextPaisParaEditarCidMPop.getText();
+        String procura = CampoTextPaisParaEditarCidMPop.getText();
         String novaCidMP = CampoTextCidadeMPop.getText();
         
-        alteraCidadePopulosa(pesquisa, novaCidMP);
+        alteraCidadePopulosa(procura, novaCidMP);
     }//GEN-LAST:event_BotaoEditaCidadeMPopActionPerformed
 
     private void CampoTextCidadeMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextCidadeMPopActionPerformed
