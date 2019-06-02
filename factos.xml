@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE paises SYSTEM "factos.dtd">
+<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="factos.xsd">
+     <pais iso="AGO">
+          <cod_telef>+244</cod_telef>
+          <cod_inter>.ao</cod_inter>
+          <capital>Luanda</capital>
+          <cid_mais_pop>Benguela</cid_mais_pop>
+          <hino>Angola Avante!</hino>
+          <moeda>Kwanza</moeda>
+          <populacao>23</populacao>
+          <area>1 246 700</area>
+          <lista_idiomas>
+               <idioma>[Português]</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="BEL">
+          <cod_telef>+32</cod_telef>
+          <cod_inter>.be</cod_inter>
+          <capital>Bruxelas</capital>
+          <cid_mais_pop>Bruxelas</cid_mais_pop>
+          <hino />
+          <moeda>Euro</moeda>
+          <populacao>11 498 519</populacao>
+          <area>30 528</area>
+          <lista_idiomas>
+               <idioma>[Neerlandês, Francês, Alemão]</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="KEN">
+          <cod_telef>+254</cod_telef>
+          <cod_inter>.ke</cod_inter>
+          <capital>Nairóbi</capital>
+          <cid_mais_pop>Nair</cid_mais_pop>
+          <hino>Oh, Deus de Toda a Criação</hino>
+          <moeda>Xelim queniano</moeda>
+          <populacao>50 950 879</populacao>
+          <area>580 367</area>
+          <lista_idiomas>
+               <idioma>[Inglês, Suaíli]</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="LUX">
+          <cod_telef>+352</cod_telef>
+          <cod_inter>.lu</cod_inter>
+          <capital>Luxemburgo</capital>
+          <cid_mais_pop>Luxemburgo</cid_mais_pop>
+          <hino>Ons Hémécht</hino>
+          <moeda>Euro</moeda>
+          <populacao>590 321</populacao>
+          <area>2 586</area>
+          <lista_idiomas>
+               <idioma>[Luxemburguês, Francês, Alemão]</idioma>
+          </lista_idiomas>
+     </pais>
+</paises>

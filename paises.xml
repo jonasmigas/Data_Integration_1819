@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="paises.xsd">
+     <pais iso="FRA">
+          <nome>França</nome>
+          <continente>Europa</continente>
+          <presidente>Emmanuel Macron</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/125px-Flag_of_France.svg.png</link_flag>
+     </pais>
+     <pais iso="ESP">
+          <nome>Espanha</nome>
+          <continente>Europa</continente>
+          <presidente />
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png</link_flag>
+     </pais>
+     <pais iso="USA">
+          <nome>Estados Unidos</nome>
+          <continente>América</continente>
+          <presidente>Donald Trump</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/125px-Flag_of_the_United_States.svg.png</link_flag>
+     </pais>
+     <pais iso="DEU">
+          <nome>Alemanha</nome>
+          <continente>Europa</continente>
+          <presidente>Frank-Walter Steinmeier</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/125px-Flag_of_Germany.svg.png</link_flag>
+     </pais>
+     <pais iso="AGO">
+          <nome>Angola</nome>
+          <continente>África</continente>
+          <presidente>Jonas Savimbi</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Flag_of_Angola.svg/125px-Flag_of_Angola.svg.png</link_flag>
+     </pais>
+     <pais iso="BEL">
+          <nome>Bélgica</nome>
+          <continente>Europa</continente>
+          <presidente />
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/125px-Flag_of_Belgium.svg.png</link_flag>
+     </pais>
+     <pais iso="UGA">
+          <nome>Uganda</nome>
+          <continente>África</continente>
+          <presidente>Yoweri Museveni</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_Uganda.svg/125px-Flag_of_Uganda.svg.png</link_flag>
+     </pais>
+     <pais iso="KEN">
+          <nome>Quénia</nome>
+          <continente>África</continente>
+          <presidente>Uhuru Kenyatta</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Kenya.svg/125px-Flag_of_Kenya.svg.png</link_flag>
+     </pais>
+     <pais iso="LUX">
+          <nome>Luxemburgo</nome>
+          <continente>Europa</continente>
+          <presidente />
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/d/da/Flag_of_Luxembourg.svg/125px-Flag_of_Luxembourg.svg.png</link_flag>
+     </pais>
+</paises>
