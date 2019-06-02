@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE paises SYSTEM "factos.dtd">
 <paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="factos.xsd">
      <pais iso="PRT">
           <cod_telef>+351</cod_telef>

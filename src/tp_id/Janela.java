@@ -7,6 +7,7 @@ package tp_id;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
 import static tp_id.TP_ID.alteraCidadePopulosa;
 import static tp_id.TP_ID.alteraPopulacao;
 import static tp_id.TP_ID.alteraPresidente;
+import static tp_id.TP_ID.procura_pais_por_continente;
 import static tp_id.TP_ID.removePaisFicheiros;
 import static tp_id.TP_ID.validarDocumentoDTD;
 import static tp_id.TP_ID.validarDocumentoXSD;
@@ -68,6 +70,10 @@ public class Janela extends javax.swing.JFrame {
         BotaoEditaCidadeMPop = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         CampoTextCidadeMPop = new javax.swing.JTextField();
+        JanelaProcPaisContinente = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        CampoTextContinente = new javax.swing.JTextField();
+        BotaoPesquisaPaisContinente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         MenuBar = new javax.swing.JMenuBar();
@@ -89,6 +95,9 @@ public class Janela extends javax.swing.JFrame {
         MenuXSLT = new javax.swing.JMenu();
         XMLparaHTML_FLAGS = new javax.swing.JMenuItem();
         XMLparaTXT_TOP5 = new javax.swing.JMenuItem();
+        XMLparaXML_EURO = new javax.swing.JMenuItem();
+        MenuXPATH = new javax.swing.JMenu();
+        ProcurarPaisesPorContinente = new javax.swing.JMenuItem();
         MenuValidar = new javax.swing.JMenu();
         ValidarPaisesDTD = new javax.swing.JMenuItem();
         ValidarFactosDTD = new javax.swing.JMenuItem();
@@ -328,6 +337,49 @@ public class Janela extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
+        jLabel9.setText("Nome do Continente:");
+
+        CampoTextContinente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextContinenteActionPerformed(evt);
+            }
+        });
+
+        BotaoPesquisaPaisContinente.setText("Pesquisar");
+        BotaoPesquisaPaisContinente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoPesquisaPaisContinenteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JanelaProcPaisContinenteLayout = new javax.swing.GroupLayout(JanelaProcPaisContinente.getContentPane());
+        JanelaProcPaisContinente.getContentPane().setLayout(JanelaProcPaisContinenteLayout);
+        JanelaProcPaisContinenteLayout.setHorizontalGroup(
+            JanelaProcPaisContinenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JanelaProcPaisContinenteLayout.createSequentialGroup()
+                .addGroup(JanelaProcPaisContinenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(JanelaProcPaisContinenteLayout.createSequentialGroup()
+                        .addContainerGap(269, Short.MAX_VALUE)
+                        .addComponent(BotaoPesquisaPaisContinente))
+                    .addGroup(JanelaProcPaisContinenteLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel9)
+                        .addGap(17, 17, 17)
+                        .addComponent(CampoTextContinente)))
+                .addGap(31, 31, 31))
+        );
+        JanelaProcPaisContinenteLayout.setVerticalGroup(
+            JanelaProcPaisContinenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JanelaProcPaisContinenteLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(JanelaProcPaisContinenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(CampoTextContinente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BotaoPesquisaPaisContinente)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setColumns(20);
@@ -452,7 +504,27 @@ public class Janela extends javax.swing.JFrame {
         });
         MenuXSLT.add(XMLparaTXT_TOP5);
 
+        XMLparaXML_EURO.setText("XML para XML --> Euro");
+        XMLparaXML_EURO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XMLparaXML_EUROActionPerformed(evt);
+            }
+        });
+        MenuXSLT.add(XMLparaXML_EURO);
+
         MenuBar.add(MenuXSLT);
+
+        MenuXPATH.setText("Xpath");
+
+        ProcurarPaisesPorContinente.setText("Procurar Países por Continente");
+        ProcurarPaisesPorContinente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProcurarPaisesPorContinenteActionPerformed(evt);
+            }
+        });
+        MenuXPATH.add(ProcurarPaisesPorContinente);
+
+        MenuBar.add(MenuXPATH);
 
         MenuValidar.setText("Validar");
 
@@ -723,6 +795,44 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoTextCidadeMPopActionPerformed
 
+    private void ProcurarPaisesPorContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcurarPaisesPorContinenteActionPerformed
+        // TODO add your handling code here:
+        JanelaProcPaisContinente.setSize(400, 250);
+        JanelaProcPaisContinente.setLocation(300, 300);
+        JanelaProcPaisContinente.setTitle("Procurar Países por Continente");
+        JanelaProcPaisContinente.setVisible(true);        
+    }//GEN-LAST:event_ProcurarPaisesPorContinenteActionPerformed
+
+    private void BotaoPesquisaPaisContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisaPaisContinenteActionPerformed
+        // TODO add your handling code here:
+        String procura = CampoTextContinente.getText();
+        String s;
+        try {
+            s = procura_pais_por_continente(procura);
+            jTextArea1.setText(s);            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SaxonApiException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotaoPesquisaPaisContinenteActionPerformed
+
+    private void CampoTextContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextContinenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextContinenteActionPerformed
+
+    private void XMLparaXML_EUROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaXML_EUROActionPerformed
+        // TODO add your handling code here:
+        Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        if (doc != null) {
+            Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "factos.xml", "transf_xml_EURO.xsl");
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "EURO.xml");
+            doc = XMLJDomFunctions.lerDocumentoXML("EURO.xml");
+            String t = XMLJDomFunctions.escreverDocumentoString(doc);
+            jTextArea1.setText(t);
+         }
+    }//GEN-LAST:event_XMLparaXML_EUROActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -766,8 +876,10 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton BotaoEditaCidadeMPop;
     private javax.swing.JButton BotaoEditaPop;
     private javax.swing.JButton BotaoEditaPresi;
+    private javax.swing.JButton BotaoPesquisaPaisContinente;
     private javax.swing.JButton BotaoRemoverPais;
     private javax.swing.JTextField CampoTextCidadeMPop;
+    private javax.swing.JTextField CampoTextContinente;
     private javax.swing.JTextField CampoTextPaisParaAdicionar;
     private javax.swing.JTextField CampoTextPaisParaEditarCidMPop;
     private javax.swing.JTextField CampoTextPaisParaEditarPop;
@@ -782,6 +894,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JDialog JanelaEditaCidaMPop;
     private javax.swing.JDialog JanelaEditaPop;
     private javax.swing.JDialog JanelaEditaPresi;
+    private javax.swing.JDialog JanelaProcPaisContinente;
     private javax.swing.JDialog JanelaRemovePais;
     private javax.swing.JMenu MenuAdicionar;
     private javax.swing.JMenuBar MenuBar;
@@ -790,7 +903,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuRemover;
     private javax.swing.JMenu MenuValidar;
     private javax.swing.JMenu MenuXML;
+    private javax.swing.JMenu MenuXPATH;
     private javax.swing.JMenu MenuXSLT;
+    private javax.swing.JMenuItem ProcurarPaisesPorContinente;
     private javax.swing.JMenuItem RemoverPais;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuItem ValidarFactosDTD;
@@ -801,6 +916,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem VerPaisesXML;
     private javax.swing.JMenuItem XMLparaHTML_FLAGS;
     private javax.swing.JMenuItem XMLparaTXT_TOP5;
+    private javax.swing.JMenuItem XMLparaXML_EURO;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -809,6 +925,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

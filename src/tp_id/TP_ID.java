@@ -798,8 +798,12 @@ public class TP_ID {
         return s;
     }
 
+
     //procurar paises por continente fonte
     static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
+
+     //procurar paises por continente fonte
+    public static String procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
         String xp = "//pais[continente = '" + procura + "']/nome";
         XdmValue res = XPathFunctions.executaXpath(xp, "paises.xml");
         String s = XPathFunctions.listaResultado(res);
@@ -807,9 +811,13 @@ public class TP_ID {
             System.out.println("Ficheiro XML não existe");
         } else if (res.size() == 0) {
             System.out.println("Sem resultados");
+            s = "Pesquisa sem Resultados";
+            return s;
         } else {
             System.out.println(s);
+            return s;
         }
+        return s;
     }
 
     //procurar países que falem um certo idioma
