@@ -16,6 +16,8 @@ import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
 import static tp_id.TP_ID.alteraPopulacao;
 import static tp_id.TP_ID.alteraPresidente;
 import static tp_id.TP_ID.removePaisFicheiros;
+import static tp_id.TP_ID.validarDocumentoDTD;
+import static tp_id.TP_ID.validarDocumentoXSD;
 
 /**
  *
@@ -74,11 +76,16 @@ public class Janela extends javax.swing.JFrame {
         MenuEditar = new javax.swing.JMenu();
         EditarPresPais = new javax.swing.JMenuItem();
         EditarPopPais = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        EditarCidMPop = new javax.swing.JMenuItem();
         MenuRemover = new javax.swing.JMenu();
         RemoverPais = new javax.swing.JMenuItem();
         MenuXSLT = new javax.swing.JMenu();
         XMLparaHTML_FLAGS = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        ValidarPaisesDTD = new javax.swing.JMenuItem();
+        ValidarFactosDTD = new javax.swing.JMenuItem();
+        ValidarPaisesXSD = new javax.swing.JMenuItem();
+        ValidarFactosXSD = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nome do País:");
 
@@ -344,13 +351,13 @@ public class Janela extends javax.swing.JFrame {
         });
         MenuEditar.add(EditarPopPais);
 
-        jMenuItem1.setText("Editar Cidade Mais Populosaa de um País");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        EditarCidMPop.setText("Editar Cidade Mais Populosa de um País");
+        EditarCidMPop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                EditarCidMPopActionPerformed(evt);
             }
         });
-        MenuEditar.add(jMenuItem1);
+        MenuEditar.add(EditarCidMPop);
 
         MenuBar.add(MenuEditar);
 
@@ -377,6 +384,42 @@ public class Janela extends javax.swing.JFrame {
         MenuXSLT.add(XMLparaHTML_FLAGS);
 
         MenuBar.add(MenuXSLT);
+
+        jMenu1.setText("Validar");
+
+        ValidarPaisesDTD.setText("Validar paises.xml DTD");
+        ValidarPaisesDTD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValidarPaisesDTDActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ValidarPaisesDTD);
+
+        ValidarFactosDTD.setText("Validar factos.xml DTD");
+        ValidarFactosDTD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValidarFactosDTDActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ValidarFactosDTD);
+
+        ValidarPaisesXSD.setText("Validar paises.xml XSD");
+        ValidarPaisesXSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValidarPaisesXSDActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ValidarPaisesXSD);
+
+        ValidarFactosXSD.setText("Validar factos.xml XSD");
+        ValidarFactosXSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValidarFactosXSDActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ValidarFactosXSD);
+
+        MenuBar.add(jMenu1);
 
         setJMenuBar(MenuBar);
 
@@ -519,13 +562,13 @@ public class Janela extends javax.swing.JFrame {
         JanelaEditaPop.setVisible(true);
     }//GEN-LAST:event_EditarPopPaisActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void EditarCidMPopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarCidMPopActionPerformed
         // TODO add your handling code here:
         JanelaEditaPop.setSize(400, 250);
         JanelaEditaPop.setLocation(300, 300);
         JanelaEditaPop.setTitle("Editar Cidade mais populosa de um país");
         JanelaEditaPop.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_EditarCidMPopActionPerformed
 
     private void XMLparaHTML_FLAGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaHTML_FLAGSActionPerformed
         // TODO add your handling code here:
@@ -544,6 +587,34 @@ public class Janela extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_XMLparaHTML_FLAGSActionPerformed
+
+    private void ValidarPaisesDTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarPaisesDTDActionPerformed
+        try {
+            // TODO add your handling code here:
+            validarDocumentoDTD("paises.xml", "paises.dtd");
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ValidarPaisesDTDActionPerformed
+
+    private void ValidarFactosDTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarFactosDTDActionPerformed
+        try {
+            // TODO add your handling code here:
+            validarDocumentoDTD("factos.xml", "factos.dtd");
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ValidarFactosDTDActionPerformed
+
+    private void ValidarPaisesXSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarPaisesXSDActionPerformed
+        // TODO add your handling code here:
+        validarDocumentoXSD("paises.xml", "paises.xsd");
+    }//GEN-LAST:event_ValidarPaisesXSDActionPerformed
+
+    private void ValidarFactosXSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValidarFactosXSDActionPerformed
+        // TODO add your handling code here:
+        validarDocumentoXSD("factos.xml", "factos.xsd");
+    }//GEN-LAST:event_ValidarFactosXSDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,6 +665,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JTextField CampoTextPaisParaRemover;
     private javax.swing.JTextField CampoTextPopulacao;
     private javax.swing.JTextField CampoTextPresidente;
+    private javax.swing.JMenuItem EditarCidMPop;
     private javax.swing.JMenuItem EditarPopPais;
     private javax.swing.JMenuItem EditarPresPais;
     private javax.swing.JDialog JanelaAdicionaPais;
@@ -609,6 +681,10 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuXSLT;
     private javax.swing.JMenuItem RemoverPais;
     private javax.swing.JMenuItem Sair;
+    private javax.swing.JMenuItem ValidarFactosDTD;
+    private javax.swing.JMenuItem ValidarFactosXSD;
+    private javax.swing.JMenuItem ValidarPaisesDTD;
+    private javax.swing.JMenuItem ValidarPaisesXSD;
     private javax.swing.JMenuItem VerFactosXML;
     private javax.swing.JMenuItem VerPaisesXML;
     private javax.swing.JMenuItem XMLparaHTML_FLAGS;
@@ -618,7 +694,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
