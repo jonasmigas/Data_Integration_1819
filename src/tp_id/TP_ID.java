@@ -399,6 +399,7 @@ public class TP_ID {
             if (m.find()) {
                 System.out.println(m.group(1));
                 area = m.group(1);
+                area = m.group(1).replaceAll("\\s", "");
             }
         }
         ler.close();

@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Top5_Mais_Populacao>ESP | 46 397 452  PRT | 10 291 196  BRA | 210 867 954 
-*</Top5_Mais_Populacao>
