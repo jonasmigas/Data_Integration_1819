@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="factos.xsd">
-     <pais iso="PRT">
-          <cod_telef>+351</cod_telef>
-          <cod_inter>.pt</cod_inter>
-          <capital>Lisboa</capital>
-          <cid_mais_pop>Ovar</cid_mais_pop>
-          <hino>A Portuguesa</hino>
-          <moeda>Euro</moeda>
-          <populacao>999 000</populacao>
-          <area>92 090</area>
-          <lista_idiomas>
-               <idioma>[Português, Mirandês]</idioma>
-          </lista_idiomas>
-     </pais>
+<paises>
      <pais iso="ESP">
           <cod_telef>+34</cod_telef>
           <cod_inter>.es</cod_inter>
@@ -23,33 +10,13 @@
           <populacao>46 397 452</populacao>
           <area>505 992</area>
           <lista_idiomas>
-               <idioma>[Espanhol, Aragonês, Asturiano, Basco, Catalão, Galego, Occitano]</idioma>
-          </lista_idiomas>
-     </pais>
-     <pais iso="MEX">
-          <cod_telef>+52</cod_telef>
-          <cod_inter>.mx</cod_inter>
-          <capital>Cidade do México</capital>
-          <cid_mais_pop>Cidade</cid_mais_pop>
-          <hino>Hino nacional do México</hino>
-          <moeda>Peso mexicano</moeda>
-          <populacao>130 759 074</populacao>
-          <area>1 964 380</area>
-          <lista_idiomas>
-               <idioma>[Espanhol]</idioma>
-          </lista_idiomas>
-     </pais>
-     <pais iso="BRA">
-          <cod_telef>+55</cod_telef>
-          <cod_inter>.br</cod_inter>
-          <capital>Brasília</capital>
-          <cid_mais_pop>S</cid_mais_pop>
-          <hino>Hino Nacional Brasileiro</hino>
-          <moeda>Real</moeda>
-          <populacao>210 867 954</populacao>
-          <area>8 514 880</area>
-          <lista_idiomas>
-               <idioma>[Português]</idioma>
+               <idioma>Espanhol</idioma>
+               <idioma>Aragonês</idioma>
+               <idioma>Asturiano</idioma>
+               <idioma>Basco</idioma>
+               <idioma>Catalão</idioma>
+               <idioma>Galego</idioma>
+               <idioma>Occitano</idioma>
           </lista_idiomas>
      </pais>
 </paises>
