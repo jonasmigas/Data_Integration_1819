@@ -396,6 +396,11 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Xpath"/>
+          </Properties>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="MenuAdicionar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
