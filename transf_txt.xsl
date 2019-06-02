@@ -2,18 +2,12 @@
 
 	<xsl:output method="text" indent="yes" />
 	
-	<xsl:template match="paises">
-		
-<Top5_Mais_Populacao>
-		      
-<xsl:apply-templates select="pais">
-	<xsl:sort select="populacao" order="descending"/>
-</xsl:apply-templates>
-*</Top5_Mais_Populacao>
-	</xsl:template>
-	<xsl:template match="pais"><xsl:text>&#160;</xsl:text><xsl:text>&#xA;</xsl:text>
-	<xsl:value-of select="concat(' ',@iso,' | ',populacao,' ')"/>
-	</xsl:template>
+	<xsl:template match="/">
+<TOP_População>*<xsl:text>&#10;</xsl:text><xsl:text>&#10;</xsl:text>
+            <xsl:for-each select="paises/pais">
+      <xsl:sort select="populacao" data-type="number" order="descending"/>
+<xsl:value-of select="concat(' ',@iso,' | ',populacao,' ')"/><xsl:text>&#10;</xsl:text>
+      </xsl:for-each>
+*</TOP_População>
+</xsl:template>
 </xsl:stylesheet>
-
-

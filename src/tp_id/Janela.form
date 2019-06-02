@@ -666,6 +666,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuXQUERY">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Xquery"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="XMLparaXML_DENS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="XML para XML --&gt; Densidade"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XMLparaXML_DENSActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

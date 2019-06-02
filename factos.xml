@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE paises SYSTEM "factos.dtd">
-<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="factos.xsd">
+<paises>
+     <pais iso="PRT">
+          <cod_telef>+351</cod_telef>
+          <cod_inter>.pt</cod_inter>
+          <capital>Lisboa</capital>
+          <cid_mais_pop>Lisboa</cid_mais_pop>
+          <hino>A Portuguesa</hino>
+          <moeda>Euro</moeda>
+          <populacao>10291196</populacao>
+          <area>92090</area>
+          <lista_idiomas>
+               <idioma>Português</idioma>
+               <idioma>Mirandês</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="BRA">
+          <cod_telef>+55</cod_telef>
+          <cod_inter>.br</cod_inter>
+          <capital>Brasília</capital>
+          <cid_mais_pop>S</cid_mais_pop>
+          <hino>Hino Nacional Brasileiro</hino>
+          <moeda>Real</moeda>
+          <populacao>210867954</populacao>
+          <area>8514880</area>
+          <lista_idiomas>
+               <idioma>Português</idioma>
+          </lista_idiomas>
+     </pais>
      <pais iso="ESP">
           <cod_telef>+34</cod_telef>
           <cod_inter>.es</cod_inter>
@@ -8,8 +34,8 @@
           <cid_mais_pop>Madrid</cid_mais_pop>
           <hino>Marcha Real</hino>
           <moeda>Euro</moeda>
-          <populacao>46 397 452</populacao>
-          <area>505 992</area>
+          <populacao>46397452</populacao>
+          <area>505992</area>
           <lista_idiomas>
                <idioma>Espanhol</idioma>
                <idioma>Aragonês</idioma>
@@ -18,6 +44,47 @@
                <idioma>Catalão</idioma>
                <idioma>Galego</idioma>
                <idioma>Occitano</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="CYP">
+          <cod_telef>+357</cod_telef>
+          <cod_inter>.cy</cod_inter>
+          <capital>Nicósia</capital>
+          <cid_mais_pop>Nic</cid_mais_pop>
+          <hino>Hino à Liberdade</hino>
+          <moeda>Euro</moeda>
+          <populacao>1189085</populacao>
+          <area>9251</area>
+          <lista_idiomas>
+               <idioma>Grego</idioma>
+               <idioma>Turco</idioma>
+               <idioma>Inglês</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="AGO">
+          <cod_telef>+244</cod_telef>
+          <cod_inter>.ao</cod_inter>
+          <capital>Luanda</capital>
+          <cid_mais_pop>Luanda</cid_mais_pop>
+          <hino>Angola Avante!</hino>
+          <moeda>Kwanza</moeda>
+          <populacao>30774205</populacao>
+          <area>1246700</area>
+          <lista_idiomas>
+               <idioma>Português</idioma>
+          </lista_idiomas>
+     </pais>
+     <pais iso="MEX">
+          <cod_telef>+52</cod_telef>
+          <cod_inter>.mx</cod_inter>
+          <capital>Cidade do México</capital>
+          <cid_mais_pop>Cidade</cid_mais_pop>
+          <hino>Hino nacional do México</hino>
+          <moeda>Peso mexicano</moeda>
+          <populacao>130759074</populacao>
+          <area>1964380</area>
+          <lista_idiomas>
+               <idioma>Espanhol</idioma>
           </lista_idiomas>
      </pais>
 </paises>

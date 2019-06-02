@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.saxon.s9api.SaxonApiException;
+import net.sf.saxon.trans.XPathException;
 import org.jdom2.Document;
 import static tp_id.TP_ID.adicionaInfoAmbosFicheiros;
 import static tp_id.TP_ID.alteraCidadePopulosa;
@@ -109,6 +110,8 @@ public class Janela extends javax.swing.JFrame {
         ValidarFactosDTD = new javax.swing.JMenuItem();
         ValidarPaisesXSD = new javax.swing.JMenuItem();
         ValidarFactosXSD = new javax.swing.JMenuItem();
+        MenuXQUERY = new javax.swing.JMenu();
+        XMLparaXML_DENS = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nome do País:");
 
@@ -619,6 +622,18 @@ public class Janela extends javax.swing.JFrame {
 
         MenuBar.add(MenuValidar);
 
+        MenuXQUERY.setText("Xquery");
+
+        XMLparaXML_DENS.setText("XML para XML --> Densidade");
+        XMLparaXML_DENS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XMLparaXML_DENSActionPerformed(evt);
+            }
+        });
+        MenuXQUERY.add(XMLparaXML_DENS);
+
+        MenuBar.add(MenuXQUERY);
+
         setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -916,6 +931,18 @@ public class Janela extends javax.swing.JFrame {
         JanelaProcPaisLingua.setVisible(true);
     }//GEN-LAST:event_ProcuraPaisesPorContinenteActionPerformed
 
+    private void XMLparaXML_DENSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaXML_DENSActionPerformed
+        try {
+            // TODO add your handling code here:
+            SaxonFunctions_XQuery.xQueryToXml("test.xml", "densidade_pop.xql");
+        } catch (XPathException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_XMLparaXML_DENSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -990,6 +1017,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuValidar;
     private javax.swing.JMenu MenuXML;
     private javax.swing.JMenu MenuXPATH;
+    private javax.swing.JMenu MenuXQUERY;
     private javax.swing.JMenu MenuXSLT;
     private javax.swing.JMenuItem ProcuraPaisesPorContinente;
     private javax.swing.JMenuItem ProcurarPaisesPorContinente;
@@ -1003,6 +1031,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem VerPaisesXML;
     private javax.swing.JMenuItem XMLparaHTML_FLAGS;
     private javax.swing.JMenuItem XMLparaTXT_TOP5;
+    private javax.swing.JMenuItem XMLparaXML_DENS;
     private javax.swing.JMenuItem XMLparaXML_EURO;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
