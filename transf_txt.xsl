@@ -7,11 +7,11 @@
 <Top5_Mais_Populacao>
 		      
 <xsl:apply-templates select="pais">
-	<xsl:sort select="populacao" order="descending"/>
+	<xsl:sort select="populacao" order="descending" data-type ="number"/>
 </xsl:apply-templates>
 *</Top5_Mais_Populacao>
 	</xsl:template>
-	<xsl:template match="pais"><xsl:text>&#160;</xsl:text><xsl:text>&#xA;</xsl:text>
+	<xsl:template match="pais">
 	<xsl:value-of select="concat(' ',@iso,' | ',populacao,' ')"/>
 	</xsl:template>
 </xsl:stylesheet>

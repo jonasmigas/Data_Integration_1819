@@ -18,6 +18,7 @@ import static tp_id.TP_ID.alteraCidadePopulosa;
 import static tp_id.TP_ID.alteraPopulacao;
 import static tp_id.TP_ID.alteraPresidente;
 import static tp_id.TP_ID.procura_pais_por_continente;
+import static tp_id.TP_ID.procura_pais_por_idioma;
 import static tp_id.TP_ID.removePaisFicheiros;
 import static tp_id.TP_ID.validarDocumentoDTD;
 import static tp_id.TP_ID.validarDocumentoXSD;
@@ -897,8 +898,15 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String procura = CampoTextLingua.getText();
         String s;
-        s = procura_pais_por_lingua(procura);
-        jTextArea1.setText(s);
+        try {
+            s = procura_pais_por_idioma(procura);
+            jTextArea1.setText(s);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SaxonApiException ex) {
+            Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_BotaoPesquisaPaisLinguaActionPerformed
 
     private void ProcuraPaisesPorContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcuraPaisesPorContinenteActionPerformed
