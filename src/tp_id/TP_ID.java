@@ -64,7 +64,7 @@ public class TP_ID {
         //alteraPresidente("França", "Chirac");
         //alteraPopulacao("Angola", "23");
         //alteraCidadePopulosa("Angola", "Benguela");
-        procura_pais_por_idioma("Português");
+        procura_pais_por_idioma("Espanhol");
         //procura_pais_por_continente("América");
     }
 
@@ -798,9 +798,7 @@ public class TP_ID {
         return s;
     }
 
-
-    //procurar paises por continente fonte
-    static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
+    
 
      //procurar paises por continente fonte
     public static String procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
@@ -826,7 +824,7 @@ public class TP_ID {
         XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
         String s = XPathFunctions.listaResultado(res);
         System.out.println(s);
-        String xp2 = "//pais[@iso=\"" + s + "\"]";
+        String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
 
         XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
         String s1 = XPathFunctions.listaResultado(res1);
@@ -836,8 +834,7 @@ public class TP_ID {
         } else if (res.size() == 0 || res1.size() == 0) {
             System.out.println("Sem resultados");
         } else {
-            //System.out.println(s);
-            System.out.println(s1);
+            System.out.println(s);
         }
     }
 
