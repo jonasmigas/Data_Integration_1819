@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="cod_telef" type="xsd:string"/>
+	<xsd:element name="cod_inter" type="xsd:string"/>
+	<xsd:element name="capital" type="xsd:string"/>
+	<xsd:element name="cid_mais_pop" type="xsd:string"/>
+	<xsd:element name="hino" type="xsd:string"/>
+	<xsd:element name="moeda" type="xsd:string"/>
+	<xsd:element name="populacao" type="xsd:string"/>
+	<xsd:element name="area" type="xsd:string"/>
+	<xsd:element name="idioma" type="xsd:string"/>
+	
+	<xsd:element name="lista_idiomas">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="idioma"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="pais">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="cod_telef"/>
+				<xsd:element ref="cod_inter"/>
+				<xsd:element ref="capital"/>
+				<xsd:element ref="cid_mais_pop"/>
+				<xsd:element ref="hino"/>
+				<xsd:element ref="moeda"/>
+				<xsd:element ref="populacao"/>
+				<xsd:element ref="area"/>
+				<xsd:element ref="lista_idiomas"/>
+			</xsd:sequence>
+			<xsd:attribute name="iso" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="paises">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="pais" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

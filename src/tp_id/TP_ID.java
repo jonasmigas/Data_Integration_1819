@@ -21,8 +21,10 @@ import javax.swing.JOptionPane;
 import net.sf.saxon.s9api.SaxonApiException;
 import net.sf.saxon.s9api.XdmValue;
 import org.jdom2.Attribute;
+import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.Namespace;
 
 /**
  *
@@ -44,26 +46,28 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-
         //procura_lingua_oficial("Portugal");// por fazer
         
+        //validarDocumentoDTD("paises.xml", "paises.dtd");
+        //validarDocumentoDTD("factos.xml", "factos.dtd");
 
-        adicionaPaisesFicheiro("Portugal");
-        testar();
-        
+        //validarDocumentoXSD("paises.xml", "paises.xsd");
+        //validarDocumentoXSD("factos.xml", "factos.xsd");
+
+        //adicionaInfoAmbosFicheiros("Luxemburgo");
+        //testar();
 
         //procura_lingua_oficial("Portugal");// funciona
         //procura_populacao("Portugal");//funciona milhoes
-        procura_area("Portugal");//funciona km2
-
+        //procura_area("Portugal");//funciona km2
         //adicionaPaisesFicheiro("França");
         //removePaisFicheiros("Brasil");
-        //adicionaInfoAmbosFicheiros("Espanha");
         //adicionaInfoAmbosFicheiros("Portugal");
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
         //alteraPresidente("França", "Chirac");
-        //alteraPopulacao("França", "23");
+        alteraPopulacao("Angola", "23");
+        //alteraCidadePopulosa("Angola", "Benguela");
     }
 
     //procurar paises por continente fonte s2
@@ -403,6 +407,7 @@ public class TP_ID {
         ler.close();
         return populacao;
     }
+
     //procurar area total de um pais fonte s2
     static String procura_area(String procura) throws FileNotFoundException, IOException {
         String link = "https://www.sport-histoire.fr/pt/Geografia/Paises_por_area.php";
@@ -427,7 +432,6 @@ public class TP_ID {
     }
 
     public static Document adicionaPais(Paises p, Document doc) {
-
         Element raiz;
         if (doc == null) {
             raiz = new Element("paises"); //cria <paises>...</paises>
@@ -507,9 +511,6 @@ public class TP_ID {
         Attribute iso = new Attribute("iso", f.getIso());
         pais.setAttribute(iso);
 
-        Element nome = new Element("nome");
-        nome.addContent(f.getNome());
-
         Element cod_telef = new Element("cod_telef");
         cod_telef.addContent(f.getCod_telef());
 
@@ -534,9 +535,10 @@ public class TP_ID {
         Element area = new Element("area");
         area.addContent(f.getArea());
 
-        //Element lista_idiomas = new Element("lista_idiomas");
-        //lista_idiomas.addContent(f.getLista_idiomas())
-        pais.addContent(nome);
+        Element lista_idiomas = new Element("lista_idiomas");
+        Element idioma = new Element("idioma");
+        idioma.addContent(f.getLista_idiomas());
+
         pais.addContent(cod_telef);
         pais.addContent(cod_inter);
         pais.addContent(capital);
@@ -545,7 +547,8 @@ public class TP_ID {
         pais.addContent(moeda);
         pais.addContent(populacao);
         pais.addContent(area);
-        //pais.addContent(lista_idiomas);
+        pais.addContent(lista_idiomas);
+        lista_idiomas.addContent(idioma);
         raiz.addContent(pais);
 
         return doc;
@@ -577,10 +580,11 @@ public class TP_ID {
             String cid_mais_pop = cidade_mais_populosa(paisInt);
             String hino = procura_hino(paisInt);
             String moeda = procura_moeda(paisInt);
-            String populacao = "teste";
-            String area = "teste";
+            String populacao = procura_populacao(paisInt);
+            String area = procura_area(paisInt);
+            ArrayList lista_idiomas = procura_lingua_oficial(paisInt);
 
-            Factos f = new Factos(iso, paisInt, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, "testar idioma");
+            Factos f = new Factos(iso, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, lista_idiomas.toString());
             doc = adicionaFactos(f, doc);
 
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
@@ -667,18 +671,17 @@ public class TP_ID {
 
     //funcao para alterar a alteracao do pais inserida no parametro
     public static Document alteraPopulacao(String procura, String novaPopulacao) {
-        Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
+        String iso ="";
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
             Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
             if (pais.getChild("nome").getText().equals(procura)) {
-                System.out.println(pais.getChild("nome").getText() + " Populacao: " + pais.getChild("populacao").getText());
-                pais.getChild("populacao").setText(novaPopulacao);
-                System.out.println("Nova populacao: " + pais.getChild("populacao").getText());
+                iso = pais.getAttributeValue("iso");
                 found = true;
             }
         }
@@ -686,26 +689,128 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
+        
+        doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        raiz = doc.getRootElement();
+        todosPaises = raiz.getChildren("pais");
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getAttributeValue("iso").equals(iso)) {
+                System.out.println("Populacao: " + pais.getChild("populacao").getText());
+                pais.getChild("populacao").setText(novaPopulacao);
+                System.out.println("Nova populacao: " + pais.getChild("populacao").getText());
+            }
+        }
 
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
     
-    public static void testar(){
+    //alterar a cidade mais populosa
+    public static Document alteraCidadePopulosa(String procura, String novaCidadeMaisPop) {
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        Element raiz;
+        raiz = doc.getRootElement();
+        List todosPaises = raiz.getChildren("pais");
+        String iso ="";
+        boolean found = false;
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getChild("nome").getText().equals(procura)) {
+                iso = pais.getAttributeValue("iso");
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Pais " + procura + " não foi encontrado");
+            return null;
+        }
+        
+        doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        raiz = doc.getRootElement();
+        todosPaises = raiz.getChildren("pais");
+
+        for (int i = 0; i < todosPaises.size(); i++) {
+            Element pais = (Element) todosPaises.get(i); //obtem pais i da Lista
+            if (pais.getAttributeValue("iso").equals(iso)) {
+                System.out.println("Cidade mais populosa: " + pais.getChild("cid_mais_pop").getText());
+                pais.getChild("cid_mais_pop").setText(novaCidadeMaisPop);
+                System.out.println("Nova cidade mais pop.: " + pais.getChild("cid_mais_pop").getText());
+                
+            }
+        }
+        XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
+        return doc;
+    }
+    
+    
+    
+    
+    public static void testar() {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         if (doc != null) {
             Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "paises.xml", "transf_html.xsl");
-             XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "teste.html");
-             doc = XMLJDomFunctions.lerDocumentoXML("teste.html");
-             String t = XMLJDomFunctions.escreverDocumentoString(doc);
-             String url = "teste.html";
-             File htmlFile = new File(url);
-                try {
-                    Desktop.getDesktop().browse(htmlFile.toURI());
-                } catch (IOException ex) {
-                    Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "teste.html");
+            doc = XMLJDomFunctions.lerDocumentoXML("teste.html");
+            String t = XMLJDomFunctions.escreverDocumentoString(doc);
+            String url = "teste.html";
+            File htmlFile = new File(url);
+            try {
+                Desktop.getDesktop().browse(htmlFile.toURI());
+            } catch (IOException ex) {
+                Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+    //validacao dtd
+    public static int validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
+        Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
+        File f = new File(DTDFile);
+        if (doc != null && f.exists()) { //DTD e XML existem
+            Element raiz = doc.getRootElement();
+            //Atribuir DTD ao ficheiro XML
+            DocType dtd = new DocType(raiz.getName(), DTDFile);
+            doc.setDocType(dtd);
+            //Gravar o XML com as alterações em disco
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, xmlFile);
+            //CHAMAR A FUNÇÃO DE VALIDAÇÃO por DTD
+            Document docDTD = JDOMFunctions_Validar.validarDTD(xmlFile);
+            if (docDTD == null) {
+                System.out.println("INVALIDO por DTD");
+                return -1;
+            } else {
+                System.out.println("VALIDO por DTD");
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+    //validacao xsd
+    public static int validarDocumentoXSD(String xmlFile, String XSDFile) {
+        Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
+        File f = new File(XSDFile);
+        if (doc != null && f.exists()) {//XSD e XML existem
+            Element raiz = doc.getRootElement();
+            //Atribuir XSD ao ficheiro XML
+            Namespace XSI = Namespace.getNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            raiz.addNamespaceDeclaration(XSI);
+            raiz.setAttribute(new Attribute("noNamespaceSchemaLocation", XSDFile, Namespace.getNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance")));
+            //Gravar o XML com as alterações em disco
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, xmlFile);
+            //CHAMAR A FUNÇÃO DE VALIDAÇÃO por XSD
+            Document docXSD = JDOMFunctions_Validar.validarXSD(xmlFile);
+            if (docXSD == null) {
+                System.out.println("INVALIDO por XSD");
+                return -1;
+            } else {
+                System.out.println("VALIDO por XSD");
+                return 1;
+            }
+        }
+        return 0;
     }
 
 }

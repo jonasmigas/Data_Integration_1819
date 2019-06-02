@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="nome" type="xsd:string"/>
+	<xsd:element name="continente" type="xsd:string"/>
+	<xsd:element name="presidente" type="xsd:string"/>
+	<xsd:element name="link_flag" type="xsd:string"/>
+	
+	<xsd:element name="pais">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="nome"/>
+				<xsd:element ref="continente"/>
+				<xsd:element ref="presidente"/>
+				<xsd:element ref="link_flag"/>
+			</xsd:sequence>
+			<xsd:attribute name="iso" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="paises">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="pais" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

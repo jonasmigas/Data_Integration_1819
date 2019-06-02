@@ -73,6 +73,7 @@ public class Janela extends javax.swing.JFrame {
         MenuEditar = new javax.swing.JMenu();
         EditarPresPais = new javax.swing.JMenuItem();
         EditarPopPais = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MenuRemover = new javax.swing.JMenu();
         RemoverPais = new javax.swing.JMenuItem();
 
@@ -340,6 +341,14 @@ public class Janela extends javax.swing.JFrame {
         });
         MenuEditar.add(EditarPopPais);
 
+        jMenuItem1.setText("Editar Cidade Mais Populosaa de um País");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenuEditar.add(jMenuItem1);
+
         MenuBar.add(MenuEditar);
 
         MenuRemover.setText("Remover");
@@ -470,7 +479,7 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
         JanelaEditaPresi.setSize(400, 250);
         JanelaEditaPresi.setLocation(300, 300);
-        JanelaEditaPresi.setTitle("Editar Presidente de um País");
+        JanelaEditaPresi.setTitle("Editar Presidente de um país");
         JanelaEditaPresi.setVisible(true);
     }//GEN-LAST:event_EditarPresPaisActionPerformed
 
@@ -484,15 +493,24 @@ public class Janela extends javax.swing.JFrame {
 
     private void CampoTextPopulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextPopulacaoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_CampoTextPopulacaoActionPerformed
 
     private void EditarPopPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarPopPaisActionPerformed
         // TODO add your handling code here:
         JanelaEditaPop.setSize(400, 250);
         JanelaEditaPop.setLocation(300, 300);
-        JanelaEditaPop.setTitle("Editar População de um País");
+        JanelaEditaPop.setTitle("Editar População de um país");
         JanelaEditaPop.setVisible(true);
     }//GEN-LAST:event_EditarPopPaisActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        JanelaEditaPop.setSize(400, 250);
+        JanelaEditaPop.setLocation(300, 300);
+        JanelaEditaPop.setTitle("Editar Cidade mais populosa de um país");
+        JanelaEditaPop.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -565,6 +583,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

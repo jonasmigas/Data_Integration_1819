@@ -11,7 +11,6 @@ package tp_id;
  */
 public class Factos {
     String iso;
-    String nome;
     String cod_telef; //código telefónico do país
     String cod_inter; //código da internet do país
     String capital;
@@ -22,9 +21,8 @@ public class Factos {
     String area;
     String lista_idiomas;
 
-    public Factos(String iso, String nome, String cod_telef, String cod_inter, String capital, String cid_mais_pop, String hino, String moeda, String populacao, String area, String lista_idiomas) {
+    public Factos(String iso, String cod_telef, String cod_inter, String capital, String cid_mais_pop, String hino, String moeda, String populacao, String area, String lista_idiomas) {
         this.iso = iso;
-        this.nome = nome;
         this.cod_telef = cod_telef;
         this.cod_inter = cod_inter;
         this.capital = capital;
@@ -42,14 +40,6 @@ public class Factos {
 
     public void setIso(String iso) {
         this.iso = iso;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCod_telef() {

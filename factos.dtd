@@ -1,0 +1,16 @@
+<!ELEMENT paises  ( pais+ )>
+<!ELEMENT pais  ( cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, lista_idiomas)>
+<!ELEMENT lista_idiomas  (idioma+)>
+<!ELEMENT cod_telef  ( #PCDATA )>
+<!ELEMENT cod_inter  ( #PCDATA )>
+<!ELEMENT capital  ( #PCDATA )>
+<!ELEMENT cid_mais_pop  ( #PCDATA )>
+<!ELEMENT hino  ( #PCDATA )>
+<!ELEMENT moeda  ( #PCDATA )>
+<!ELEMENT populacao  ( #PCDATA )>
+<!ELEMENT area  ( #PCDATA )>
+<!ELEMENT idioma  ( #PCDATA )>
+
+<!ATTLIST pais iso CDATA #REQUIRED>
+<!ATTLIST paises xmlns:xsi CDATA #IMPLIED>
+<!ATTLIST paises xsi:noNamespaceSchemaLocation CDATA #IMPLIED>
