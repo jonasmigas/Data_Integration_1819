@@ -809,7 +809,7 @@ public class Janela extends javax.swing.JFrame {
         String s;
         try {
             s = procura_pais_por_continente(procura);
-            jTextArea1.setText(s);            
+            jTextArea1.setText(s);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SaxonApiException ex) {

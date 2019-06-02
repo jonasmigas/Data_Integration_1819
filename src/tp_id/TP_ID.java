@@ -798,10 +798,6 @@ public class TP_ID {
         return s;
     }
 
-
-    //procurar paises por continente fonte
-    static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
-
      //procurar paises por continente fonte
     public static String procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
         String xp = "//pais[continente = '" + procura + "']/nome";
