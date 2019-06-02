@@ -381,6 +381,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="MenuXSLT">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="XSLT"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="XMLparaHTML_FLAGS">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="XML para HTML --&gt; Bandeiras"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XMLparaHTML_FLAGSActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

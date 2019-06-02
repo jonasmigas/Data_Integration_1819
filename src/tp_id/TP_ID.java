@@ -55,7 +55,7 @@ public class TP_ID {
         //validarDocumentoXSD("factos.xml", "factos.xsd");                //está a dar erros
 
         //adicionaInfoAmbosFicheiros("Luxemburgo");
-        //testar();
+        //testarHTML_FLAGS();
 
         //procura_lingua_oficial("Portugal");// funciona
         //procura_populacao("Portugal");//funciona milhoes
@@ -748,7 +748,7 @@ public class TP_ID {
     
     
     
-    public static void testar() {
+    public static void testarHTML_FLAGS() {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         if (doc != null) {
             Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "paises.xml", "transf_html.xsl");
@@ -764,6 +764,8 @@ public class TP_ID {
             }
         }
     }
+    
+    
     //validacao dtd
     public static int validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);

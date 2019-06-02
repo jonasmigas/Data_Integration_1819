@@ -5,6 +5,7 @@
  */
 package tp_id;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -76,6 +77,8 @@ public class Janela extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuRemover = new javax.swing.JMenu();
         RemoverPais = new javax.swing.JMenuItem();
+        MenuXSLT = new javax.swing.JMenu();
+        XMLparaHTML_FLAGS = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nome do País:");
 
@@ -363,6 +366,18 @@ public class Janela extends javax.swing.JFrame {
 
         MenuBar.add(MenuRemover);
 
+        MenuXSLT.setText("XSLT");
+
+        XMLparaHTML_FLAGS.setText("XML para HTML --> Bandeiras");
+        XMLparaHTML_FLAGS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XMLparaHTML_FLAGSActionPerformed(evt);
+            }
+        });
+        MenuXSLT.add(XMLparaHTML_FLAGS);
+
+        MenuBar.add(MenuXSLT);
+
         setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -512,6 +527,24 @@ public class Janela extends javax.swing.JFrame {
         JanelaEditaPop.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void XMLparaHTML_FLAGSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaHTML_FLAGSActionPerformed
+        // TODO add your handling code here:
+        Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
+        if (doc != null) {
+            Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "paises.xml", "transf_html.xsl");
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "teste.html");
+            doc = XMLJDomFunctions.lerDocumentoXML("teste.html");
+            String t = XMLJDomFunctions.escreverDocumentoString(doc);
+            String url = "teste.html";
+            File htmlFile = new File(url);
+            try {
+                Desktop.getDesktop().browse(htmlFile.toURI());
+            } catch (IOException ex) {
+                Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_XMLparaHTML_FLAGSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -573,10 +606,12 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenu MenuPrincipal;
     private javax.swing.JMenu MenuRemover;
     private javax.swing.JMenu MenuXML;
+    private javax.swing.JMenu MenuXSLT;
     private javax.swing.JMenuItem RemoverPais;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuItem VerFactosXML;
     private javax.swing.JMenuItem VerPaisesXML;
+    private javax.swing.JMenuItem XMLparaHTML_FLAGS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
