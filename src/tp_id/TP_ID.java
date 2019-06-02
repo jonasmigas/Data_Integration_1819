@@ -817,7 +817,7 @@ public class TP_ID {
     }
 
     //procurar países que falem um certo idioma
-    static void procura_pais_por_idioma(String procura) throws FileNotFoundException, SaxonApiException {
+    public static String procura_pais_por_idioma(String procura) throws FileNotFoundException, SaxonApiException {
         String xp = "//pais/lista_idiomas[idioma = '" + procura + "']/../@iso";
         XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
         String s = XPathFunctions.listaResultado(res);
@@ -831,10 +831,14 @@ public class TP_ID {
             System.out.println("Ficheiro XML não existe");
         } else if (res.size() == 0 || res1.size() == 0) {
             System.out.println("Sem resultados");
+            s = "Pesquisa sem Resultados";
+            return s;
         } else {
-            //System.out.println(s);
-            System.out.println(s1);
+            System.out.println(s);
+            //System.out.println(s1);
+            return s;
         }
+        return s;
     }
 
 }
