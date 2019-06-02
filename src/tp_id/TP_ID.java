@@ -70,27 +70,7 @@ public class TP_ID {
         //alteraCidadePopulosa("Angola", "Benguela");
     }
 
-    //procurar paises por continente fonte s2
-    static ArrayList procura_pais_por_continente(String procura) throws FileNotFoundException {
-        String er = "href=\"[^0-9]+/[^0-9]+\\.php\">([^0-9]+)</a></td><td>[^0-9]+</td><td>" + procura + "</td>";
-        Scanner ler = new Scanner(new FileInputStream("mundo.html"));
-        Pattern p = Pattern.compile(er);
-        Matcher m;
-        String linha;
-        ArrayList<String> lista = new ArrayList();
-        while (ler.hasNext()) {
-            linha = ler.next();
-            m = p.matcher(linha);
-            if (m.find()) {
-                System.out.println(m.group(1));
-                lista.add(m.group(1));
-            }
-        }
-        ler.close();
-        return lista;
-
-    }
-
+ 
     //procurar continente de um país fonte s2
     static String procura_continente_do_pais(String procura) throws FileNotFoundException, IOException {
         String link = "https://www.sport-histoire.fr/pt/Geografia/Paises_por_ordem_alfabetica.php";
@@ -821,4 +801,41 @@ public class TP_ID {
         return s;
     }
 
+     //procurar paises por continente fonte
+    static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
+        String xp = "//pais[continente = '" + procura + "']/nome";
+        XdmValue res = XPathFunctions.executaXpath(xp, "paises.xml");
+        String s = XPathFunctions.listaResultado(res);
+        if (res == null) {
+            System.out.println("Ficheiro XML não existe");
+        } else if (res.size() == 0) {
+            System.out.println("Sem resultados");
+        } else {
+            System.out.println(s);
+        }
+    }
+
+    //procurar países que falem um certo idioma
+    static void procura_pais_por_idioma(String procura) throws FileNotFoundException, SaxonApiException {
+        String xp = "//pais/lista_idiomas[idioma = '" + procura + "']/../@iso";
+        XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
+        String s = XPathFunctions.listaResultado(res);
+        System.out.println(s);
+        String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
+
+        XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
+        String s1 = XPathFunctions.listaResultado(res1);
+        System.out.println(s1);
+        if (res == null || res1 == null) {
+            System.out.println("Ficheiro XML não existe");
+        } else if (res.size() == 0 || res1.size() == 0) {
+            System.out.println("Sem resultados");
+        } else {
+            //System.out.println(s);
+            System.out.println(s1);
+        }
+    }
+    
+    
+    
 }
