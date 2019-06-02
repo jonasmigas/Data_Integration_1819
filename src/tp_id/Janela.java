@@ -68,6 +68,7 @@ public class Janela extends javax.swing.JFrame {
         ApagarPaisesXML = new javax.swing.JMenuItem();
         VerFactosXML = new javax.swing.JMenuItem();
         ApagarFactosXML = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         MenuAdicionar = new javax.swing.JMenu();
         AdicionarPais = new javax.swing.JMenuItem();
         MenuEditar = new javax.swing.JMenu();
@@ -310,6 +311,9 @@ public class Janela extends javax.swing.JFrame {
         MenuXML.add(ApagarFactosXML);
 
         MenuBar.add(MenuXML);
+
+        jMenu1.setText("Xpath");
+        MenuBar.add(jMenu1);
 
         MenuAdicionar.setText("Adicionar");
 
@@ -583,6 +587,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

@@ -46,17 +46,13 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-        //procura_lingua_oficial("Portugal");// por fazer
-        
-        //validarDocumentoDTD("paises.xml", "paises.dtd");
-        //validarDocumentoDTD("factos.xml", "factos.dtd");
-
-        //validarDocumentoXSD("paises.xml", "paises.xsd");
-        //validarDocumentoXSD("factos.xml", "factos.xsd");
-
+        //procura_lingua_oficial("Portugal");// funciona
+        //validarDocumentoDTD("paises.xml", "paises.dtd"); //funciona
+        //validarDocumentoDTD("factos.xml", "factos.dtd"); //funciona
+        //validarDocumentoXSD("paises.xml", "paises.xsd"); //funciona
+        //validarDocumentoXSD("factos.xml", "factos.xsd"); //funciona
         //adicionaInfoAmbosFicheiros("Luxemburgo");
         //testar();
-
         //procura_lingua_oficial("Portugal");// funciona
         //procura_populacao("Portugal");//funciona milhoes
         //procura_area("Portugal");//funciona km2
@@ -66,29 +62,10 @@ public class TP_ID {
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
         //alteraPresidente("França", "Chirac");
-        alteraPopulacao("Angola", "23");
-        //alteraCidadePopulosa("Angola", "Benguela");
-    }
-
-    //procurar paises por continente fonte s2
-    static ArrayList procura_pais_por_continente(String procura) throws FileNotFoundException {
-        String er = "href=\"[^0-9]+/[^0-9]+\\.php\">([^0-9]+)</a></td><td>[^0-9]+</td><td>" + procura + "</td>";
-        Scanner ler = new Scanner(new FileInputStream("mundo.html"));
-        Pattern p = Pattern.compile(er);
-        Matcher m;
-        String linha;
-        ArrayList<String> lista = new ArrayList();
-        while (ler.hasNext()) {
-            linha = ler.next();
-            m = p.matcher(linha);
-            if (m.find()) {
-                System.out.println(m.group(1));
-                lista.add(m.group(1));
-            }
-        }
-        ler.close();
-        return lista;
-
+        //alteraPopulacao("Angola", "23");
+        //alteraCidadePopulosa("Angola", "Benguela"); //funciona
+        //procura_pais_por_continente("África"); //funciona
+        procura_pais_por_idioma("[Português]");
     }
 
     //procurar continente de um país fonte s2
@@ -675,7 +652,7 @@ public class TP_ID {
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
-        String iso ="";
+        String iso = "";
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
@@ -689,7 +666,7 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         raiz = doc.getRootElement();
         todosPaises = raiz.getChildren("pais");
@@ -706,14 +683,14 @@ public class TP_ID {
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
-    
+
     //alterar a cidade mais populosa
     public static Document alteraCidadePopulosa(String procura, String novaCidadeMaisPop) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
-        String iso ="";
+        String iso = "";
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
@@ -727,7 +704,7 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         raiz = doc.getRootElement();
         todosPaises = raiz.getChildren("pais");
@@ -738,16 +715,13 @@ public class TP_ID {
                 System.out.println("Cidade mais populosa: " + pais.getChild("cid_mais_pop").getText());
                 pais.getChild("cid_mais_pop").setText(novaCidadeMaisPop);
                 System.out.println("Nova cidade mais pop.: " + pais.getChild("cid_mais_pop").getText());
-                
+
             }
         }
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
-    
-    
-    
-    
+
     public static void testar() {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         if (doc != null) {
@@ -764,6 +738,7 @@ public class TP_ID {
             }
         }
     }
+
     //validacao dtd
     public static int validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
@@ -787,7 +762,7 @@ public class TP_ID {
         }
         return 0;
     }
-    
+
     //validacao xsd
     public static int validarDocumentoXSD(String xmlFile, String XSDFile) {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
@@ -813,4 +788,39 @@ public class TP_ID {
         return 0;
     }
 
+    //pesquisas Xpath
+    //procurar paises por continente fonte
+    static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
+        String xp = "//pais[continente = '" + procura + "']/nome";
+        XdmValue res = XPathFunctions.executaXpath(xp, "paises.xml");
+        String s = XPathFunctions.listaResultado(res);
+        if (res == null) {
+            System.out.println("Ficheiro XML não existe");
+        } else if (res.size() == 0) {
+            System.out.println("Sem resultados");
+        } else {
+            System.out.println(s);
+        }
+    }
+
+    //procurar países que falem um certo idioma
+    static void procura_pais_por_idioma(String procura) throws FileNotFoundException, SaxonApiException {
+        String xp = "//pais/lista_idiomas[idioma = '" + procura + "']/../@iso";
+        XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
+        String s = XPathFunctions.listaResultado(res);
+        System.out.println(s);
+        String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
+
+        XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
+        String s1 = XPathFunctions.listaResultado(res1);
+        System.out.println(s1);
+        if (res == null || res1 == null) {
+            System.out.println("Ficheiro XML não existe");
+        } else if (res.size() == 0 || res1.size() == 0) {
+            System.out.println("Sem resultados");
+        } else {
+            //System.out.println(s);
+            System.out.println(s1);
+        }
+    }
 }
