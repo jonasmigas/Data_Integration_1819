@@ -1,24 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<!-- New XSLT document created with EditiX XML Editor (http://www.editix.com) at Wed Apr 27 12:24:58 WEST 2016 -->
-
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:output method="txt" indent="yes" />
+	<xsl:output method="text" indent="yes" />
 	
-	<xsl:template match="livros">
+	<xsl:template match="paises">
 		
-<listagem>
+<TOP_5_mais_populacao>
 		      
-<xsl:apply-templates select="livro"/>
-		
-</listagem>	
+<xsl:apply-templates select="pais">
+	<xsl:sort select="capital" order="descending"/>
+</xsl:apply-templates>
+*</TOP_5_mais_populacao>
 	</xsl:template>
-
-	<xsl:template match="livro">
-		
-		      
-<xsl:copy-of select="titulo"/>
+	<xsl:template match="pais">_________
+	***<xsl:value-of select="@iso"/>***
 	</xsl:template>
 </xsl:stylesheet>
 

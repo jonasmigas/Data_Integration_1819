@@ -81,6 +81,7 @@ public class Janela extends javax.swing.JFrame {
         RemoverPais = new javax.swing.JMenuItem();
         MenuXSLT = new javax.swing.JMenu();
         XMLparaHTML_FLAGS = new javax.swing.JMenuItem();
+        XMLparaTXT_TOP5 = new javax.swing.JMenuItem();
         MenuValidar = new javax.swing.JMenu();
         ValidarPaisesDTD = new javax.swing.JMenuItem();
         ValidarFactosDTD = new javax.swing.JMenuItem();
@@ -383,6 +384,14 @@ public class Janela extends javax.swing.JFrame {
         });
         MenuXSLT.add(XMLparaHTML_FLAGS);
 
+        XMLparaTXT_TOP5.setText("XML para TXT --> Top 5 Pop");
+        XMLparaTXT_TOP5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XMLparaTXT_TOP5ActionPerformed(evt);
+            }
+        });
+        MenuXSLT.add(XMLparaTXT_TOP5);
+
         MenuBar.add(MenuXSLT);
 
         MenuValidar.setText("Validar");
@@ -624,6 +633,24 @@ public class Janela extends javax.swing.JFrame {
         jTextArea1.setText(s);
     }//GEN-LAST:event_ValidarFactosXSDActionPerformed
 
+    private void XMLparaTXT_TOP5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XMLparaTXT_TOP5ActionPerformed
+        // TODO add your handling code here:
+        Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
+        if (doc != null) {
+            Document novo = JDOMFunctions_XSLT.transformaDocumento(doc, "factos.xml", "transf_txt.xsl");
+            XMLJDomFunctions.escreverDocumentoParaFicheiro(novo, "TOP_5_POP.txt");
+            doc = XMLJDomFunctions.lerDocumentoXML("TOP_5_POP.txt");
+            String t = XMLJDomFunctions.escreverDocumentoString(doc);
+            String url = "TOP_5_POP.txt";
+            File txtFile = new File(url);
+            try {
+                Desktop.getDesktop().browse(txtFile.toURI());
+            } catch (IOException ex) {
+                Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_XMLparaTXT_TOP5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -697,6 +724,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JMenuItem VerFactosXML;
     private javax.swing.JMenuItem VerPaisesXML;
     private javax.swing.JMenuItem XMLparaHTML_FLAGS;
+    private javax.swing.JMenuItem XMLparaTXT_TOP5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
