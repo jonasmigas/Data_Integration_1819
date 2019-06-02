@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paises>
+<!DOCTYPE paises SYSTEM "factos.dtd">
+<paises xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="factos.xsd">
      <pais iso="ESP">
           <cod_telef>+34</cod_telef>
           <cod_inter>.es</cod_inter>

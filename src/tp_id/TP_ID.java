@@ -787,11 +787,11 @@ public class TP_ID {
             Document docXSD = JDOMFunctions_Validar.validarXSD(xmlFile);
             if (docXSD == null) {
                 System.out.println("INVALIDO por XSD");
-                s = "Ficheiro " + xmlFile + " INVALIDADO por DTD";
+                s = "Ficheiro " + xmlFile + " INVALIDADO por XSD";
                 return s;
             } else {
                 System.out.println("VALIDO por XSD");
-                s = "Ficheiro " + xmlFile + " VALIDO por DTD";
+                s = "Ficheiro " + xmlFile + " VALIDO por XSD";
                 return s;
             }
         }
