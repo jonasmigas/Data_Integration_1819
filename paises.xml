@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paises>
+     <pais iso="PRT">
+          <nome>Portugal</nome>
+          <continente>Europa</continente>
+          <presidente>Marcelo Rebelo de Sousa</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/125px-Flag_of_Portugal.svg.png</link_flag>
+     </pais>
+     <pais iso="ESP">
+          <nome>Espanha</nome>
+          <continente>Europa</continente>
+          <presidente />
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/125px-Flag_of_Spain.svg.png</link_flag>
+     </pais>
+     <pais iso="MEX">
+          <nome>México</nome>
+          <continente>América</continente>
+          <presidente>Andrés Manuel López Obrador</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/125px-Flag_of_Mexico.svg.png</link_flag>
+     </pais>
+     <pais iso="BRA">
+          <nome>Brasil</nome>
+          <continente>América</continente>
+          <presidente>Jair Bolsonaro</presidente>
+          <link_flag>//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/125px-Flag_of_Brazil.svg.png</link_flag>
+     </pais>
+</paises>
