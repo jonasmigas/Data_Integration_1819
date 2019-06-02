@@ -19,9 +19,11 @@ public class Factos {
     String moeda;
     String populacao;
     String area;
-    String lista_idiomas;
+    //String lista_idiomas;
 
-    public Factos(String iso, String cod_telef, String cod_inter, String capital, String cid_mais_pop, String hino, String moeda, String populacao, String area, String lista_idiomas) {
+  
+    
+    public Factos(String iso, String cod_telef, String cod_inter, String capital, String cid_mais_pop, String hino, String moeda, String populacao, String area) {
         this.iso = iso;
         this.cod_telef = cod_telef;
         this.cod_inter = cod_inter;
@@ -31,9 +33,10 @@ public class Factos {
         this.moeda = moeda;
         this.populacao = populacao;
         this.area = area;
-        this.lista_idiomas = lista_idiomas;
+        //this.lista_idiomas = lista_idiomas;
     }
-
+    
+    
     public String getIso() {
         return iso;
     }
@@ -106,12 +109,12 @@ public class Factos {
         this.area = area;
     }
 
-    public String getLista_idiomas() {
-        return lista_idiomas;
-    }
+//    public String getLista_idiomas() {
+//        return lista_idiomas;
+//    }
 
-    public void setLista_idiomas(String lista_idiomas) {
-        this.lista_idiomas = lista_idiomas;
-    }
+//    public void setLista_idiomas(String lista_idiomas) {
+//        this.lista_idiomas = lista_idiomas;
+//    }
     
 }

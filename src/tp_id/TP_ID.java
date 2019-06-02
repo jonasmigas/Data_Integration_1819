@@ -42,21 +42,17 @@ public class TP_ID {
         //procura_link_bandeira_do_pais("Espanha"); //funciona
         //procura_capital("Portugal"); //funciona
         //cidade_mais_populosa("França"); //funciona 
-        //procura_hino("Itália"); //funciona em alguns
+        //procura_hino("Brasil"); //funciona em alguns
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
         //procura_lingua_oficial("Portugal");                              // por fazer
-        
         //validarDocumentoDTD("paises.xml", "paises.dtd");
         //validarDocumentoDTD("factos.xml", "factos.dtd");
-
         //validarDocumentoXSD("paises.xml", "paises.xsd");
         //validarDocumentoXSD("factos.xml", "factos.xsd");                //está a dar erros
-
         //adicionaInfoAmbosFicheiros("Luxemburgo");
         //testarHTML_FLAGS();
-
         //procura_lingua_oficial("Portugal");// funciona
         //procura_populacao("Portugal");//funciona milhoes
         //procura_area("Portugal");//funciona km2
@@ -68,9 +64,10 @@ public class TP_ID {
         //alteraPresidente("França", "Chirac");
         //alteraPopulacao("Angola", "23");
         //alteraCidadePopulosa("Angola", "Benguela");
+        procura_pais_por_idioma("Português");
+        //procura_pais_por_continente("América");
     }
 
- 
     //procurar continente de um país fonte s2
     static String procura_continente_do_pais(String procura) throws FileNotFoundException, IOException {
         String link = "https://www.sport-histoire.fr/pt/Geografia/Paises_por_ordem_alfabetica.php";
@@ -332,8 +329,6 @@ public class TP_ID {
         ArrayList<String> lingua = new ArrayList();
         HttpRequestFunctions.httpRequest1(link, "", "linguas.html");
         String er = "<img alt=\"" + procura + "\"";
-        //String er = "<span id=\"" + procura + "\">";
-        //String er = "<td valign=\"[^>]+><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span style=\"[^>]+>[^<]+</span><span id=\"" + procura + "\">";
         String er2 = "title=\"Língua [^\"]+\">([^<]+)</a>";
         String er3 = "</td>";
         Pattern p = Pattern.compile(er);
@@ -356,7 +351,6 @@ public class TP_ID {
                         return lingua;
                     }
                     if (m.find()) {
-                        System.out.println(m.group(1));
                         lingua.add(m.group(1));
                     }
                 }
@@ -476,11 +470,11 @@ public class TP_ID {
         }
     }
 
-    public static Document adicionaFactos(Factos f, Document doc) {
+    public static Document adicionaFactos(Factos f, Idiomas d, Document doc, int tam, ArrayList lista) {
 
         Element raiz;
         if (doc == null) {
-            raiz = new Element("factos"); //cria <paises>...</paises>
+            raiz = new Element("factos");
             doc = new Document(raiz);
         } else {
             raiz = doc.getRootElement();
@@ -514,11 +508,6 @@ public class TP_ID {
 
         Element area = new Element("area");
         area.addContent(f.getArea());
-
-        Element lista_idiomas = new Element("lista_idiomas");
-        Element idioma = new Element("idioma");
-        idioma.addContent(f.getLista_idiomas());
-
         pais.addContent(cod_telef);
         pais.addContent(cod_inter);
         pais.addContent(capital);
@@ -527,8 +516,17 @@ public class TP_ID {
         pais.addContent(moeda);
         pais.addContent(populacao);
         pais.addContent(area);
+
+        Element lista_idiomas = new Element("lista_idiomas");
         pais.addContent(lista_idiomas);
-        lista_idiomas.addContent(idioma);
+        for (int i = 0; i < tam; i++) {
+            String formatado = lista.get(i).toString().replace(",", "").replace("[", "").replace("]", "");
+            d = new Idiomas(formatado);
+            Element idioma = new Element("idioma");
+            idioma.addContent(d.getIdioma());
+            lista_idiomas.addContent(idioma);
+        }
+
         raiz.addContent(pais);
 
         return doc;
@@ -536,7 +534,6 @@ public class TP_ID {
     }
 
     public static void adicionaFactosFicheiro(String paisInt) throws FileNotFoundException, IOException, SaxonApiException {
-
         Document doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         Element raiz;
         if (doc == null) {
@@ -564,8 +561,12 @@ public class TP_ID {
             String area = procura_area(paisInt);
             ArrayList lista_idiomas = procura_lingua_oficial(paisInt);
 
-            Factos f = new Factos(iso, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area, lista_idiomas.toString());
-            doc = adicionaFactos(f, doc);
+            Factos f = new Factos(iso, cod_telef, cod_inter, capital, cid_mais_pop, hino, moeda, populacao, area);
+
+            int tam = lista_idiomas.size();
+            String formatado = lista_idiomas.toString().replace(",", "").replace("[", "").replace("]", "");
+            Idiomas d = new Idiomas(formatado);
+            doc = adicionaFactos(f, d, doc, tam, lista_idiomas);
 
             XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         }
@@ -655,7 +656,7 @@ public class TP_ID {
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
-        String iso ="";
+        String iso = "";
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
@@ -669,7 +670,7 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         raiz = doc.getRootElement();
         todosPaises = raiz.getChildren("pais");
@@ -686,14 +687,14 @@ public class TP_ID {
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
-    
+
     //alterar a cidade mais populosa
     public static Document alteraCidadePopulosa(String procura, String novaCidadeMaisPop) {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         Element raiz;
         raiz = doc.getRootElement();
         List todosPaises = raiz.getChildren("pais");
-        String iso ="";
+        String iso = "";
         boolean found = false;
 
         for (int i = 0; i < todosPaises.size(); i++) {
@@ -707,7 +708,7 @@ public class TP_ID {
             System.out.println("Pais " + procura + " não foi encontrado");
             return null;
         }
-        
+
         doc = XMLJDomFunctions.lerDocumentoXML("factos.xml");
         raiz = doc.getRootElement();
         todosPaises = raiz.getChildren("pais");
@@ -718,16 +719,13 @@ public class TP_ID {
                 System.out.println("Cidade mais populosa: " + pais.getChild("cid_mais_pop").getText());
                 pais.getChild("cid_mais_pop").setText(novaCidadeMaisPop);
                 System.out.println("Nova cidade mais pop.: " + pais.getChild("cid_mais_pop").getText());
-                
+
             }
         }
         XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "factos.xml");
         return doc;
     }
-    
-    
-    
-    
+
     public static void testarHTML_FLAGS() {
         Document doc = XMLJDomFunctions.lerDocumentoXML("paises.xml");
         if (doc != null) {
@@ -744,8 +742,7 @@ public class TP_ID {
             }
         }
     }
-    
-    
+
     //validacao dtd
     public static String validarDocumentoDTD(String xmlFile, String DTDFile) throws IOException {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
@@ -762,7 +759,7 @@ public class TP_ID {
             Document docDTD = JDOMFunctions_Validar.validarDTD(xmlFile);
             if (docDTD == null) {
                 System.out.println("INVALIDO por DTD");
-                s="Ficheiro " + xmlFile + " INVALIDADO por DTD";
+                s = "Ficheiro " + xmlFile + " INVALIDADO por DTD";
                 return s;
             } else {
                 System.out.println("VALIDO por DTD");
@@ -772,7 +769,7 @@ public class TP_ID {
         }
         return s;
     }
-    
+
     //validacao xsd
     public static String validarDocumentoXSD(String xmlFile, String XSDFile) {
         Document doc = XMLJDomFunctions.lerDocumentoXML(xmlFile);
@@ -790,7 +787,7 @@ public class TP_ID {
             Document docXSD = JDOMFunctions_Validar.validarXSD(xmlFile);
             if (docXSD == null) {
                 System.out.println("INVALIDO por XSD");
-                s="Ficheiro " + xmlFile + " INVALIDADO por DTD";
+                s = "Ficheiro " + xmlFile + " INVALIDADO por DTD";
                 return s;
             } else {
                 System.out.println("VALIDO por XSD");
@@ -801,7 +798,7 @@ public class TP_ID {
         return s;
     }
 
-     //procurar paises por continente fonte
+    //procurar paises por continente fonte
     static void procura_pais_por_continente(String procura) throws FileNotFoundException, SaxonApiException {
         String xp = "//pais[continente = '" + procura + "']/nome";
         XdmValue res = XPathFunctions.executaXpath(xp, "paises.xml");
@@ -821,7 +818,7 @@ public class TP_ID {
         XdmValue res = XPathFunctions.executaXpath(xp, "factos.xml");
         String s = XPathFunctions.listaResultado(res);
         System.out.println(s);
-        String xp2 = "//pais[@iso=\"" + s + "\"]/nome";
+        String xp2 = "//pais[@iso=\"" + s + "\"]";
 
         XdmValue res1 = XPathFunctions.executaXpath(xp2, "paises.xml");
         String s1 = XPathFunctions.listaResultado(res1);
@@ -835,7 +832,5 @@ public class TP_ID {
             System.out.println(s1);
         }
     }
-    
-    
-    
+
 }
