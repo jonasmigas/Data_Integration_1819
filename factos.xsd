@@ -13,7 +13,7 @@
 	<xsd:element name="lista_idiomas">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="idioma"/>
+				<xsd:element ref="idioma" maxOccurs="unbounded"/>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>

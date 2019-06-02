@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paises>
-     <pais iso="ESP">
-          <cod_telef>+34</cod_telef>
-          <cod_inter>.es</cod_inter>
-          <capital>Madrid</capital>
-          <cid_mais_pop>Madrid</cid_mais_pop>
-          <hino>Marcha Real</hino>
+     <pais iso="PRT">
+          <cod_telef>+351</cod_telef>
+          <cod_inter>.pt</cod_inter>
+          <capital>Lisboa</capital>
+          <cid_mais_pop>Lisboa</cid_mais_pop>
+          <hino>A Portuguesa</hino>
           <moeda>Euro</moeda>
-          <populacao>46 397 452</populacao>
-          <area>505 992</area>
+          <populacao>10291196</populacao>
+          <area>92 090</area>
           <lista_idiomas>
-               <idioma>Espanhol</idioma>
-               <idioma>Aragonês</idioma>
-               <idioma>Asturiano</idioma>
-               <idioma>Basco</idioma>
-               <idioma>Catalão</idioma>
-               <idioma>Galego</idioma>
-               <idioma>Occitano</idioma>
+               <idioma>Português</idioma>
+               <idioma>Mirandês</idioma>
           </lista_idiomas>
      </pais>
 </paises>
