@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TOP_População>*
+
+ BRA | 210867954 
+ MEX | 130759074 
+ ESP | 46397452 
+ AGO | 30774205 
+ PRT | 10291196 
+ CYP | 1189085 
+
+*</TOP_População>
