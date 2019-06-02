@@ -46,13 +46,13 @@ public class TP_ID {
         //procura_moeda("Alemanha"); //funciona
         //procura_cod_telef("Alemanha"); //funciona
         //procura_cod_internet("China"); //funciona
-        //procura_lingua_oficial("Portugal");// por fazer
+        //procura_lingua_oficial("Portugal");                              // por fazer
         
         //validarDocumentoDTD("paises.xml", "paises.dtd");
         //validarDocumentoDTD("factos.xml", "factos.dtd");
 
         //validarDocumentoXSD("paises.xml", "paises.xsd");
-        //validarDocumentoXSD("factos.xml", "factos.xsd");
+        //validarDocumentoXSD("factos.xml", "factos.xsd");                //está a dar erros
 
         //adicionaInfoAmbosFicheiros("Luxemburgo");
         //testar();
@@ -66,7 +66,7 @@ public class TP_ID {
         //adicionaPaisesFicheiro("Ruanda");
         //adicionaFactosFicheiro("França");
         //alteraPresidente("França", "Chirac");
-        alteraPopulacao("Angola", "23");
+        //alteraPopulacao("Angola", "23");
         //alteraCidadePopulosa("Angola", "Benguela");
     }
 
